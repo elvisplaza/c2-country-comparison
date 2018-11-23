@@ -9,7 +9,17 @@ $increaseTextColor: #66bf68;
 $decreaseTextColor: #ed6562;
 
 // Text variables
-$mainTypeface: 'zeitung-micro, sans-serif';
+$mainTypeface: 'zeitung-micro', sans-serif;
 $secondaryTypeface: 'Space Mono', monospace;
 
 // Mixins
+
+
+body {
+  // background
+  background: $backgroundColor;
+
+  // text
+  color: $textColor;
+  font-family: $mainTypeface;
+}
