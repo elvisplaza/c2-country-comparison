@@ -1,15 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Project 4</title>
+  <!-- Meta -->
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+
+  <!-- Favicon -->
+  <link rel='shortcut icon' href='images/favicon.ico' type='image/x-icon'>
+  <link rel='icon' href='images/favicon.ico' type='image/x-icon'>
+
+  <!-- Styling -->
+  <link rel="stylesheet" href="https://use.typekit.net/dri0lhd.css">
+  <link href="https://fonts.googleapis.com/css?family=Space+Mono:400,700" rel="stylesheet">
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.1/css/all.css' integrity='sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz' crossorigin='anonymous'>
+  <link rel='stylesheet' href='styles/style.css'>
+
+  <!-- Scripts -->
+  
+  <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
+  <script src='scripts/countryData.js'></script>
+
+  <title>World Bank API Project</title> <!-- *** ADD TITLE *** -->
 </head>
 <body>
-  
+  <header>
+
+  </header>
+  <main>
+    <!-- Modal popup section (homepage - choose country) -->
+    <div class="modal">
+      <div class="modal__content" id="choose-country">
+
+      </div>
+      <div class="modal__background">
+
+      </div>
+    </div>
+
+    <!-- Main content section -->
+    <section class="content">
+
+      <!-- Modal - top 10 lists -->
+      <div class="modal">
+        <div class="modal__top-lists">
+      
+        </div>
+        <div class="modal__background">
+        
+        </div>
+      </div>
+
+      <!-- Top navigation -->
+      <nav>
+        <ul>
+          <!-- Search button/search bar -->
+          <li></li>
+
+          <!-- Settings button -->
+          <li></li>
+
+          <!-- Lists button -->
+          <li></li>
+
+          <!-- Country button -->
+          <li></li>
+        </ul>
+      </nav>
+      <!-- Country data (on hover) div -->
+      <div class="country-data">
+
+      </div>
+
+      <!-- World map -->
+      <div class="map">
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+  </footer>
 </body>
 <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
-<script src="scripts/main.js">
+<script src="scripts/countryData.js">
 </script>
 </html>
