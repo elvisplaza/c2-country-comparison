@@ -4,10 +4,10 @@ app.countriesEndpoint = `countries/`;
 app.indicatorsEndpoint = `all/indicators/`;
 app.countryData = {};
 
-// app.Init = function (){
-//   app.countryDataPromise(); 
-//   app.countrySearch();
-// }
+app.Init = function (){
+  app.countryDataPromise(); 
+  app.countrySearch();
+}
 
 app.indicatorObjects = [
   {id:"SP.POP.TOTL",
@@ -62,10 +62,6 @@ app.indicatorObjects = [
     name:"Employment to population ratio, 15+, male (%)"
   }
 ];
-
-
-
-
   app.indicatorCall = function (indicatorID) {
     return $.ajax({
       url: `${app.apiURL}${app.countriesEndpoint}${app.indicatorsEndpoint}${indicatorID.id}`,
@@ -143,9 +139,8 @@ app.indicatorObjects = [
 
     
 $(function() {
-      // app.Init();
-  app.countryDataPromise();
-  app.countrySearch();
+      app.Init();
+
       
 })
 
