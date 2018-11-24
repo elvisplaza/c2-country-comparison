@@ -1,0 +1,22 @@
+.main-menu {
+  display: flex;
+  flex-direction: row;
+  // justify-content: space-between;
+
+  &__search {
+    // flex-basis: 50%;
+
+    .input {
+      // sizing
+      min-width: 375px;
+      width: 50%;
+    }
+  }
+
+  &__search,
+  &__settings,
+  &__lists,
+  &__country {
+    padding-right: 1.5rem;
+  }
+}

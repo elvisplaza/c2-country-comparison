@@ -1,0 +1,57 @@
+.input {
+  // background
+  background: rgba(76, 76, 76, 0.8);
+
+  // border
+  border: none;
+
+  // position & spacing
+  display: inline-block;
+  padding: 1rem 2rem;
+
+  // sizing
+  min-width: 300px;
+  width: 75%;
+
+  // text
+  color: $textColor;
+  font-family: $secondaryTypeface;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.country-list {
+  // background
+  background: rgba(76, 76, 76, 0.75);
+
+  // position & spacing
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  z-index: 100;
+
+  // sizing
+  min-width: 300px;
+  width: 40%;
+
+  &__item {
+    // text
+    color: rgba($textColor, 0.5);
+    font-family: $secondaryTypeface;
+    font-size: 1.6rem;
+
+    // position & spacing
+    padding: 0.25rem 1rem;
+
+    &:hover {
+      // background
+      background: rgba(76, 76, 76, 0.85);
+
+      // cursor
+      cursor: pointer;
+
+      // text
+      color: rgba($textColor, 0.75);
+    }
+  }
+}
