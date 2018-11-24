@@ -4,16 +4,15 @@ app.countriesEndpoint = `countries/`;
 app.indicatorsEndpoint = `all/indicators/`;
 app.countryData = {};
 
-app.getInit = function (){
+app.Init = function (){
   app.countryDataPromise(); 
-
-
-
+  app.countrySearch();
 }
 
 app.indicatorObjects = [
   {id:"SP.POP.TOTL",
-  name:'Total Population'},
+  name:'Total Population'
+},
   
   { id: "SP.POP.TOTL.FE.IN",
     name: "Female Total Population"
@@ -84,12 +83,10 @@ app.indicatorObjects = [
     const indicatorVals = app.indicatorObjects.map(app.indicatorCall);
     $.when(...indicatorVals)
       .then((...res) => {
-        res.forEach(function (dataArray) {
+        res.forEach(function (dataArray) {      
           const fixedArray = dataArray[0][1];
-          // console.log(fixedArray)
           const indicatorID = fixedArray[0].indicator.id;
           fixedArray.forEach(function (object) {
-            // console.log(object)
             const currCountryID = object.country.id;
             if (app.countryData[currCountryID] !== undefined) {
               app.countryData[currCountryID][indicatorID] = object.value;
@@ -99,6 +96,7 @@ app.indicatorObjects = [
         })
       })
   }
+
   app.countryDataPromise = function (){
     $.ajax({
       url: `${app.apiURL}${app.countriesEndpoint}`,
@@ -123,15 +121,27 @@ app.indicatorObjects = [
           };
         };
       });
-      // console.log(app.countryData);
     }).then(() => {
       app.secondAPICall();
+    }).then(()=>{
+      app.newcountryDataArray();
     });
-    console.log(app.countryData)
   }
 
+  //putting countrydata object into an array function
+  app.countryDataArray =[]
+    app.newcountryDataArray = function(){
+      for(let array in app.countryData){
+          app.countryDataArray.push(app.countryData[array]);
+      }
+    }
+  
+
+
+    
 $(function () {
-
-  app.getInit();
-
+      app.Init();
+      
 })
+
+
