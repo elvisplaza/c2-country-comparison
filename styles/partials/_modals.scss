@@ -1,0 +1,128 @@
+.modal {
+  
+  &__content {
+    // background
+    background: $secondaryDarkColor;
+
+    // border
+    border: 2px solid $textColor;
+
+    // position & spacing
+    // position & spacing
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 3rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+
+    // sizing
+    // height: 400px;
+    min-width: 350px;
+    width: 50%;
+
+    // text
+    text-align: center;
+
+    .input {
+      // position & spacing
+      transform: translateX(0);
+
+      // transition & animation
+      transition: 0.5s transform ease-in-out;
+    }
+
+    .button {
+
+      &:hover {
+        // position & spacing
+        transform: translateX(0.5rem);
+
+        // transition & animation
+        transition: 0.5s transform ease-in-out;
+
+        .modal__content {
+          .input {
+            // position & spacing
+            transform: translateX(0.5rem);
+
+            // transition & animation
+            transition: 0.5s transform ease-in-out;
+          }
+        }
+
+
+        }
+      }
+    }
+
+    .toggle {
+      // position & spacing
+      margin: 3rem 0 0.25rem;
+    }
+    
+    .close {
+      // cursor
+      cursor: pointer;
+
+      // position & spacing
+      display: inline-block;
+      margin: 1rem 0 0.25rem;
+      position: relative;
+
+      // text
+      font-size: 1.2rem;
+      opacity: 0.5;
+      text-transform: none;
+
+      // transition & animation
+      transition: all 0.25s ease;
+
+      &:hover {
+        // text
+        opacity: 0.4;
+        
+        // transition & animation
+        transition: all 0.25s ease;
+      }
+    }
+
+    .toggle {
+      // cursor
+      cursor: pointer;
+
+      // text
+      opacity: 1;
+
+      // transition & animation
+      transition: all 0.25s ease;
+
+      &:hover {
+        // text
+        opacity: 0.75;
+
+        // transition & animation
+        transition: all 0.25s ease;
+      }
+    }
+  
+
+  &__background {
+    // background
+    background: rgba(45, 45, 45, 0.9);
+
+    // position & spacing
+    position: absolute;
+    z-index: 0;
+    // left: 0;
+    // top: 0;
+    
+    // sizing
+    height: 100vh;
+    width: 100%;
+  }
+}
+
