@@ -194,12 +194,15 @@ $(function() {
       $(`#${mapId}`).toggleClass('highlight')
     }
   });
-
-
-  $('li').on('click', function () {
-  clickedEvent = $(this).val()
-  console.log(clickedEvent)
+// const selectList = function(){
+  $('#country-list-2').on('clickchange', 'li', function () {
+    $('#country-input-2:text').val('');
+    const text = $('#country-input-2');
+    clickedEvent = $(this).text();
+    text.val(text.val() + `${clickedEvent}`)
   })
+
+// }
 
 
   $('.country-list').on('click', 'li', function() {
