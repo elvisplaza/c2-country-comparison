@@ -22,10 +22,16 @@ app.mapCountrySearch = function() {
             });
             resolve(html2);
         })
+
+        //determines if the li list will be empty or not.
+        getData2.then(function (array) {
+            if ($('#country-input-2').val() !== "") {
+
         //determines if the li list will be empty or not. 
         getData2.then(function (array) {
             if ($('#country-input-2').val() !== "") {
                 $('#country-list-2').empty().append(array.slice(0, 5));
+
                 $('#country-list-2').removeClass("no-display");
             } else {
                 $('#country-list-2').addClass("no-display");

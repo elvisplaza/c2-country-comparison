@@ -5,11 +5,16 @@ app.toggleVis = function(elemToHideClass, elemToShowClass){
 }
 
 // On click of parameter label, change highlight status
-$('.label').on('click', function() {
-  $(this).toggleClass('label--selected');
+$(".parameters-fieldset").on("click", "label", function() {
+  $(this).toggleClass("label--selected");
   const value = $(this).text();
   console.log(value);
-})
+  app.parameterVisibility();
+});
+
+// $('.parameters-fieldset').on('change', 'label', function(){
+//   app.parameterVisibility();
+// })
 
 // On click of "I just want to browse" text, hide modal
 $('.close').on('click', function(){
@@ -31,26 +36,22 @@ $('#country-form').on("submit", function(e) {
 
 $('.country').on('mouseover', function(){
   const clickedCountryID = $(this).attr("id");
-  console.log(clickedCountryID);
   $('.country-name').text(clickedCountryID);
 })
 
-$('.main-menu__settings .button').on('click', function(){
+$('.settings-button').on('click', function(){
   $('.main-menu__parameters').toggleClass('no-display');
   $(this).toggleClass("button--highlight");
 });
 
 $('body').on('click', function(e){
-  // console.log(e.target);
   const clickTarget =  e.target.className;
-  // console.log(e.target.hasClass("main-menu__settings"));
-  console.log(clickTarget);
   const settingsButton = $('.main-menu__settings');
   const parametersDiv = $(".main-menu__parameters");
   const parametersClass = `main-menu__parameters`;
   if (clickTarget !== parametersClass || clickTarget === undefined || clickTarget !== null) {
     settingsButton.removeClass("button--highlight");
-    parametersDiv.addClass('no-display');
+    parametersDiv.addClass("no-display");
   }
 })
 
