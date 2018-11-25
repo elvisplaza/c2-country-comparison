@@ -12,13 +12,13 @@ app.mainMenuSearchBar = (wordToMatch, country) => {
 
 // the function that takes the value from the input and maps throught and displays the found information. 
 app.mapCountrySearch = function() {
-    $('#country-input-2').on('keyup copy paste cut', function() {
+    $('#country-input-2').on('keyup copy paste cut change', function() {
         const currentValue = $(this).val();
         app.searchResults = app.mainMenuSearchBar(currentValue, app.countryDataArray);
         console.log(app.searchResults)
         const getData2 = new Promise(function (resolve, reject) {
             const html2 = app.searchResults.map(function (place) {
-                return `<li class="country-list__item"><p>${place.name} - ${place.capital} </p></li>`;
+                return `<li class="country-list__item"><p>${place.name}</p></li>`;
             });
             resolve(html2);
         })
