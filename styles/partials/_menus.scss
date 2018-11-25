@@ -19,4 +19,15 @@
   &__country {
     padding-right: 1.5rem;
   }
+
+  &__parameters {
+    // background
+    background: rgba(76, 76, 76, 0.5);
+    
+    // position & spacing
+    position: absolute;
+    
+    // sizing
+    width: 300px;
+  }
 }
