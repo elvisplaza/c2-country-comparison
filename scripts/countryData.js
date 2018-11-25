@@ -3,10 +3,12 @@ app.apiURL = 'https://api.worldbank.org/V2/';
 app.countriesEndpoint = `countries/`;
 app.indicatorsEndpoint = `all/indicators/`;
 app.countryData = {};
+app.searchResults = {};
 
 app.Init = function (){
   app.countryDataPromise(); 
   app.countrySearch();
+  app.mapCountrySearch();
 }
 
 app.indicatorObjects = [
@@ -104,7 +106,6 @@ app.indicatorObjects = [
       }
     }).then(res => {
       res[1].forEach(function (item) {
-        console.log(item)
         if (item.region.value !== "Aggregates") {
           app.countryData[item.iso2Code] = {
             name: item.name,
@@ -140,8 +141,21 @@ app.indicatorObjects = [
     
 $(function() {
       app.Init();
+  //SUBMIT BUTTON FOR MAIN-MENU PLEASE ADD TO EVENT LISTENERS. 
+  $('.form-2').on('submit', function (e) {
+    e.preventDefault()
+    const value = $('#country-input-2').val();
+    if(value.toLowerCase() == app.searchResults[0].name.toLowerCase()){
+      const mapId = app.searchResults[0].geography.id
+      $(`#${mapId}`).toggleClass('highlight')
+    }
+  });
 
-      
+  $('li').on('click', function () {
+  clickedEvent = $(this).val()
+  console.log(clickedEvent)
+  })
+
+
 })
-
 
