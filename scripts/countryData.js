@@ -3,10 +3,12 @@ app.apiURL = 'https://api.worldbank.org/V2/';
 app.countriesEndpoint = `countries/`;
 app.indicatorsEndpoint = `all/indicators/`;
 app.countryData = {};
+app.searchResults = {};
 
 app.Init = function (){
   app.countryDataPromise(); 
   app.countrySearch();
+  app.mapCountrySearch();
 }
 
 app.indicatorObjects = [
@@ -62,10 +64,6 @@ app.indicatorObjects = [
     name:"Employment to population ratio, 15+, male (%)"
   }
 ];
-
-
-
-
   app.indicatorCall = function (indicatorID) {
     return $.ajax({
       url: `${app.apiURL}${app.countriesEndpoint}${app.indicatorsEndpoint}${indicatorID.id}`,
@@ -109,13 +107,14 @@ app.indicatorObjects = [
     }).then(res => {
       res[1].forEach(function (item) {
         if (item.region.value !== "Aggregates") {
-          app.countryData[item.iso2Code.toString()] = {
+          app.countryData[item.iso2Code] = {
             name: item.name,
             capital: item.capitalCity,
             geography: {
               region: item.region.value,
               latitude: item.latitude,
               longitude: item.longitude,
+              id: item.iso2Code
             },
             incomeLevel: item.incomeLevel.id,
           };
@@ -138,10 +137,25 @@ app.indicatorObjects = [
   
 
 
-    
-$(function () {
-      app.Init();
-      
-})
 
+    
+$(function() {
+      app.Init();
+  //SUBMIT BUTTON FOR MAIN-MENU PLEASE ADD TO EVENT LISTENERS. 
+  $('.form-2').on('submit', function (e) {
+    e.preventDefault()
+    const value = $('#country-input-2').val();
+    if(value.toLowerCase() == app.searchResults[0].name.toLowerCase()){
+      const mapId = app.searchResults[0].geography.id
+      $(`#${mapId}`).toggleClass('highlight')
+    }
+  });
+
+  $('li').on('click', function () {
+  clickedEvent = $(this).val()
+  console.log(clickedEvent)
+  })
+
+
+})
 
