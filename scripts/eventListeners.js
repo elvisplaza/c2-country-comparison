@@ -34,24 +34,19 @@ $('#country-form').on("submit", function(e) {
     .addClass("no-display");
 })
 
-$('.country').on('mouseover', function(){
-  const clickedCountryID = $(this).attr("id");
-  $('.country-name').text(clickedCountryID);
-})
-
-$('.settings-button').on('click', function(){
+$('#settings-button').on('click', function(){
   $('.main-menu__parameters').toggleClass('no-display');
   $(this).toggleClass("button--highlight");
 });
 
-$('body').on('click', function(e){
-  const clickTarget =  e.target.className;
-  const settingsButton = $('.main-menu__settings');
-  const parametersDiv = $(".main-menu__parameters");
-  const parametersClass = `main-menu__parameters`;
-  if (clickTarget !== parametersClass || clickTarget === undefined || clickTarget !== null) {
-    settingsButton.removeClass("button--highlight");
-    parametersDiv.addClass("no-display");
-  }
-})
+// $('body').on('click', function(e){
+//   const clickTarget =  e.target.className;
+//   const settingsButton = $('.main-menu__settings');
+//   const parametersDiv = $(".main-menu__parameters");
+//   const parametersClass = `main-menu__parameters`;
+//   if (clickTarget !== parametersClass || clickTarget === undefined || clickTarget !== null) {
+//     settingsButton.removeClass("button--highlight");
+//     parametersDiv.addClass("no-display");
+//   }
+// })
 

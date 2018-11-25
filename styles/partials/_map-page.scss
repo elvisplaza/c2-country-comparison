@@ -12,7 +12,9 @@
 
       &:hover {
         // fill
-        fill: $highlightColor;
+        stroke: $highlightColor;
+        stroke-width: 2;
+        fill: #a3e2a3;
 
         // position & spacing
         transform-origin: center;

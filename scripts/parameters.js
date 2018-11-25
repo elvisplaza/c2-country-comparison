@@ -8,10 +8,15 @@
 // Create a function which goes through the indicator objects array and appends each item to the DOM as a parameter label tag
 app.displayIndicators = function(){
   app.indicatorObjects.forEach(function (object) {
-    const parameterDOMObject = `
+    const parameterLabel = `
     <label class="label label--selected" for="${object.tag}">${object.value}</label>
     <input type="checkbox" id="${object.tag}" value="${object.value}" data-code="${object.id}" class="parameter-input visuallyhidden" checked>`;
-    $(".parameters-fieldset").append(parameterDOMObject);
+    $(".parameters-fieldset").append(parameterLabel);
+
+    const parameterCountryData = `<p class="parameter-value ${object.tag}">
+						<span class="parameter-name ${object.tag}">${object.value}</span>
+					</p>`;
+    $(".map__country-data").append(parameterCountryData);
   });
 
   app.parameterVisibility();
@@ -22,14 +27,14 @@ app.parameterVisibility = function(){
   $(".parameter-input").each(function() {
     // console.log(object);
     const paramVal = $('.parameter-value');
-    const classToCheck = $('')
-    if ($(this).prop("checked") === true) {
-      paramVal.hasClass(`${object.id}`).removeClass('no-display');
-      console.log(`${dataKey} is checked`);
-    } else {
-      paramVal.hasClass(`${object.id}`).addClass('no-display');
-      console.log(`${dataKey} is not checked`);
-    }
+    // const classToCheck = $('')
+    // if ($(this).prop("checked") === true) {
+    //   paramVal.hasClass(`${object.id}`).removeClass('no-display');
+    //   console.log(`${dataKey} is checked`);
+    // } else {
+    //   paramVal.hasClass(`${object.id}`).addClass('no-display');
+    //   console.log(`${dataKey} is not checked`);
+    // }
   });
 }
 

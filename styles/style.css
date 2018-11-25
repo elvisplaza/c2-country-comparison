@@ -373,7 +373,9 @@ fieldset {
   -o-transition: all 0.5s ease 0.05s;
   transition: all 0.5s ease 0.05s; }
   .map__content .country:hover {
-    fill: #5780f7;
+    stroke: #5780f7;
+    stroke-width: 2;
+    fill: #a3e2a3;
     -webkit-transform-origin: center;
     -ms-transform-origin: center;
     transform-origin: center;
