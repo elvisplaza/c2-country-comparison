@@ -24,7 +24,7 @@ app.countrySearch = function() {
         //determines if the li list will be empty or not.
         getData.then(function (array) {
             if ($('#country-input').val() !== "") {
-                $('#country-list').empty().append(array.slice(0, 5));
+                $('#country-list').empty().append(array.slice(0, 3));
                 $('#country-list').removeClass("no-display");
             } else {
                 $('#country-list').addClass("no-display");

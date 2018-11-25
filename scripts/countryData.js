@@ -82,7 +82,6 @@ app.indicatorObjects = [
     tag: "education_sec",
     value: "Education (secondary)"
   },
-
   {
     id: "SE.TOT.ENRR",
     name: "Gross enrolment ratio, primary school to tertiary (both sexes %)",
@@ -102,6 +101,10 @@ app.indicatorObjects = [
     name: "Employment to population ratio, 15+, male (%)",
     tag: "employment_male",
     value: "Employment (male)"
+  }
+];  
+  { id: "SL.EMP.TOTL.SP.MA.NE.ZS",
+    name:"Employment to population ratio, 15+, male (%)"
   }
 ];
 
@@ -192,6 +195,13 @@ $(function() {
     }
   });
 
+
+  $('li').on('click', function () {
+  clickedEvent = $(this).val()
+  console.log(clickedEvent)
+  })
+
+
   $('.country-list').on('click', 'li', function() {
     // console.log(this);
     clickedEvent = $(this).text();
@@ -207,6 +217,8 @@ $(function() {
   })
   
 
+
+})
 
 })
 
