@@ -1,3 +1,8 @@
 .no-display {
   display: none;
 }
+
+.button--highlight {
+  // background
+  background: $highlightColor;
+}

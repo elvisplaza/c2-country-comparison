@@ -22,9 +22,35 @@ $('.toggle').on('click', function(){
 })
 
 // On click of country submit button
-$("#country-form").on("submit", function(e) {
+$('#country-form').on("submit", function(e) {
   e.preventDefault();
   $(this)
     .closest(".modal")
     .addClass("no-display");
+})
+
+$('.country').on('mouseover', function(){
+  const clickedCountryID = $(this).attr("id");
+  console.log(clickedCountryID);
+  $('.country-name').text(clickedCountryID);
+})
+
+$('.main-menu__settings .button').on('click', function(){
+  $('.main-menu__parameters').toggleClass('no-display');
+  $(this).toggleClass("button--highlight");
 });
+
+$('body').on('click', function(e){
+  // console.log(e.target);
+  const clickTarget =  e.target.className;
+  // console.log(e.target.hasClass("main-menu__settings"));
+  console.log(clickTarget);
+  const settingsButton = $('.main-menu__settings');
+  const parametersDiv = $(".main-menu__parameters");
+  const parametersClass = `main-menu__parameters`;
+  if (clickTarget !== parametersClass || clickTarget === undefined || clickTarget !== null) {
+    settingsButton.removeClass("button--highlight");
+    parametersDiv.addClass('no-display');
+  }
+})
+
