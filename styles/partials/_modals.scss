@@ -8,7 +8,6 @@
     border: 2px solid $textColor;
 
     // position & spacing
-    // position & spacing
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,36 +33,13 @@
       // transition & animation
       transition: 0.5s transform ease-in-out;
     }
-
-    .button {
-
-      &:hover {
-        // position & spacing
-        transform: translateX(0.5rem);
-
-        // transition & animation
-        transition: 0.5s transform ease-in-out;
-
-        .modal__content {
-          .input {
-            // position & spacing
-            transform: translateX(0.5rem);
-
-            // transition & animation
-            transition: 0.5s transform ease-in-out;
-          }
-        }
-
-
-        }
-      }
     }
 
     .toggle {
       // position & spacing
       margin: 3rem 0 0.25rem;
     }
-    
+
     .close {
       // cursor
       cursor: pointer;
@@ -84,7 +60,7 @@
       &:hover {
         // text
         opacity: 0.4;
-        
+
         // transition & animation
         transition: all 0.25s ease;
       }

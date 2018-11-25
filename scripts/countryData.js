@@ -6,64 +6,108 @@ app.countryData = {};
 app.searchResults = {};
 
 app.Init = function (){
+  app.displayIndicators();
   app.countryDataPromise(); 
   app.countrySearch();
   app.mapCountrySearch();
 }
 
 app.indicatorObjects = [
-  {id:"SP.POP.TOTL",
-  name:'Total Population'
-},
-  
-  { id: "SP.POP.TOTL.FE.IN",
-    name: "Female Total Population"
+  {
+    id: "SP.POP.TOTL",
+    name: "Total Population",
+    tag: "population",
+    value: "Population"
   },
-  
-  { id: "SP.POP.TOTL.MA.IN",
-    name: "Male Total Population"
+
+  {
+    id: "SP.POP.TOTL.FE.IN",
+    name: "Female Total Population",
+    tag: "population_fem",
+    value: "Population (female)"
   },
-  
-  { id: "NY.GDP.MKTP.CD",
-    name: "GDP (current, $US)"
+
+  {
+    id: "SP.POP.TOTL.MA.IN",
+    name: "Male Total Population",
+    tag: "population_male",
+    value: "Population (male)"
   },
-  
-  { id: "NY.GDP.MKTP.KD.ZG",
-    name: "GDP growth (annuel %)"
+
+  {
+    id: "NY.GDP.MKTP.CD",
+    name: "GDP (current, $US)",
+    tag: "gdp",
+    value: "GDP"
   },
-  
-  { id: "SP.DYN.LE00.IN",
-    name: "Life expectancy at birth, total"
+
+  {
+    id: "NY.GDP.MKTP.KD.ZG",
+    name: "GDP growth (annuel %)",
+    tag: "gdp-growth",
+    value: "GDP growth"
   },
-  
-  { id: "5.51.01.01.poverty",
-    name: "Income Poverty"
+
+  {
+    id: "SP.DYN.LE00.IN",
+    name: "Life expectancy at birth, total",
+    tag: "life-expectancy",
+    value: "Life expectancy"
   },
-  
-  { id: "EN.ATM.CO2E.KT",
-    name: "CO2 emissions (kt)"
+
+  {
+    id: "5.51.01.01.poverty",
+    name: "Income Poverty",
+    tag: "poverty",
+    value: "Income poverty"
   },
-  
-  { id: "UIS.E.4",
-    name: "Enrolment in Post-Secondary Education (both sexes)"
+
+  {
+    id: "EN.ATM.CO2E.KT",
+    name: "CO2 emissions (kt)",
+    tag: "co2",
+    value: "CO2 emissions"
   },
-  
-  { id: "UIS.E.3.GPV",
-    name: "Enrolment in Secondary Education"
+
+  {
+    id: "UIS.E.4",
+    name: "Enrolment in Post-Secondary Education (both sexes)",
+    tag: "education_ps",
+    value: "Education (post-secondary)"
   },
-  
-  { id: "SE.TOT.ENRR",
-    name: "Gross enrolment ratio, primary school to tertiary (both sexes %)"
+
+  {
+    id: "UIS.E.3.GPV",
+    name: "Enrolment in Secondary Education",
+    tag: "education_sec",
+    value: "Education (secondary)"
   },
-  
-  { id: "SL.EMP.TOTL.SP.FE.NE.ZS",
-    name: "Employment to population ratio, 15+, female (%)"
+  {
+    id: "SE.TOT.ENRR",
+    name: "Gross enrolment ratio, primary school to tertiary (both sexes %)",
+    tag: "education_prim",
+    value: "Education (primary)"
   },
-  
+
+  {
+    id: "SL.EMP.TOTL.SP.FE.NE.ZS",
+    name: "Employment to population ratio, 15+, female (%)",
+    tag: "employment_fem",
+    value: "Employment (female)"
+  },
+
+  {
+    id: "SL.EMP.TOTL.SP.MA.NE.ZS",
+    name: "Employment to population ratio, 15+, male (%)",
+    tag: "employment_male",
+    value: "Employment (male)"
+  }
+];  
   { id: "SL.EMP.TOTL.SP.MA.NE.ZS",
     name:"Employment to population ratio, 15+, male (%)"
   }
 ];
+
   app.indicatorCall = function (indicatorID) {
     return $.ajax({
       url: `${app.apiURL}${app.countriesEndpoint}${app.indicatorsEndpoint}${indicatorID.id}`,
@@ -160,6 +204,24 @@ $(function() {
 
 // }
 
+
+  $('.country-list').on('click', 'li', function() {
+    // console.log(this);
+    clickedEvent = $(this).text();
+    
+    $(".country-list").addClass("no-display");
+  })
+
+  $('.modal__content').on('click', function(e){
+    if (e.target.className !== "country-list__item") {
+      $(".modal__content").addClass("no-display");
+      // parametersDiv.addClass("no-display");
+    }
+  })
+  
+
+
+})
 
 })
 
