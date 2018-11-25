@@ -33,27 +33,6 @@
       // transition & animation
       transition: 0.5s transform ease-in-out;
     }
-
-    .button {
-
-      &:hover {
-        // position & spacing
-        transform: translateX(0.5rem);
-
-        // transition & animation
-        transition: 0.5s transform ease-in-out;
-
-        .modal__content {
-          .input {
-            // position & spacing
-            transform: translateX(0.5rem);
-
-            // transition & animation
-            transition: 0.5s transform ease-in-out;
-          }
-        }
-        }
-      }
     }
 
     .toggle {

@@ -258,7 +258,7 @@ fieldset {
   font-weight: 500; }
 
 .country-list {
-  background: rgba(76, 76, 76, 0.75);
+  background: #4c4c4c;
   margin: 0;
   padding: 0;
   position: fixed;
@@ -271,7 +271,7 @@ fieldset {
     font-size: 1.6rem;
     padding: 0.25rem 1rem; }
     .country-list__item:hover {
-      background: rgba(76, 76, 76, 0.85);
+      background: rgba(102, 102, 102, 0.75);
       cursor: pointer;
       color: rgba(234, 234, 234, 0.75); }
 
@@ -307,24 +307,6 @@ fieldset {
     -o-transition: 0.5s transform ease-in-out;
     transition: 0.5s transform ease-in-out;
     transition: 0.5s transform ease-in-out, 0.5s -webkit-transform ease-in-out; }
-  .modal__content .button:hover {
-    -webkit-transform: translateX(0.5rem);
-    -ms-transform: translateX(0.5rem);
-    transform: translateX(0.5rem);
-    -webkit-transition: 0.5s -webkit-transform ease-in-out;
-    transition: 0.5s -webkit-transform ease-in-out;
-    -o-transition: 0.5s transform ease-in-out;
-    transition: 0.5s transform ease-in-out;
-    transition: 0.5s transform ease-in-out, 0.5s -webkit-transform ease-in-out; }
-    .modal__content .button:hover .modal__content .input {
-      -webkit-transform: translateX(0.5rem);
-      -ms-transform: translateX(0.5rem);
-      transform: translateX(0.5rem);
-      -webkit-transition: 0.5s -webkit-transform ease-in-out;
-      transition: 0.5s -webkit-transform ease-in-out;
-      -o-transition: 0.5s transform ease-in-out;
-      transition: 0.5s transform ease-in-out;
-      transition: 0.5s transform ease-in-out, 0.5s -webkit-transform ease-in-out; }
 
 .modal .toggle {
   margin: 3rem 0 0.25rem; }

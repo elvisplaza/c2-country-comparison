@@ -41,30 +41,10 @@
               </ul>
               <button class="button" id="country-submit"><span class="visuallyhidden">Go</span><i class="fas fa-arrow-right"></i></button>
               <h4 class="toggle">Customize parameters</h4>
-              <fieldset class="toggle__content no-display">
-                <label class="label label--selected" for="population">Population</label>
-                <input type="checkbox" id="population" value="Population" checked>
-                <label class="label label--selected" for="income">Income</label>
-                <input type="checkbox" id="income" value="Income" checked>
-                <label class="label label--selected" for="gdp">GDP</label>
-                <input type="checkbox" id="gdp" value="GDP" checked>
-                <label class="label label--selected" for="education">Education</label>
-                <input type="checkbox" id="education" value="Education" checked>
-                <label class="label label--selected" for="life-expectancy">Life expectancy</label>
-                <input type="checkbox" id="life-expectancy" value="Life expectancy" checked>
-                <label class="label label--selected" for="unemployment">Unemployment</label>
-                <input type="checkbox" id="unemployment" value="Unemployment" checked>
-                <label class="label label--selected" for="gender-gap">Gender gap</label>
-                <input type="checkbox" id="gender-gap" value="Gender gap" checked>
-                <label class="label label--selected" for="food-deficit">Food deficit</label>
-                <input type="checkbox" id="food-deficit" value="Food deficit" checked>
-                <label class="label label--selected" for="health-exp">Health expenditure</label>
-                <input type="checkbox" id="health-exp" value="Health expenditure" checked>
-                <label class="label label--selected" for="co2-emissions">CO2 emissions</label>
-                <input type="checkbox" id="co2-emissions" value="CO2 emissions" checked>
+              <fieldset class="toggle__content parameters-fieldset no-display">
               </fieldset>
           </form>
-          <h4 class="close">Only interested in browsing?</h4>
+          <h4 class="close">I just want to browse</h4>
         </div>
       </div>
       <!-- Modal background overlay -->
@@ -97,9 +77,9 @@
 
           <!-- Settings button -->
           <li class="main-menu__settings">
-						<button class="button">Settings</button>
-						<div class='main-menu__parameters no-display'>
-							<fieldset class="toggle__content">
+						<button class=".settings-button button">Settings</button>
+						<div class="main-menu__parameters no-display">
+							<fieldset class="parameters-fieldset toggle__content">
 								<p>Parameters</p>
 								<label class="label label--selected" for="population">Population</label>
 								<input type="checkbox" id="population" value="Population" checked>
@@ -143,7 +123,57 @@
       <div class="map">
         <!-- Country data (on hover) div -->
         <div class="map__country-data">
-          <h2 class="country-name"></h2>
+					<h2 class="country-name">Country<span class="country-code">AA</span></h2>
+					<p class="parameter-value">
+						<span>Metric</span>
+						<span>Number</span>
+						<span>%</span>
+					</p>
+					<p class="parameter-value">
+						<span>Metric</span>
+						<span>Number</span>
+						<span>%</span>
+					</p>
+					<p class="parameter-value">
+						<span>Metric</span>
+						<span>Number</span>
+						<span>%</span>
+					</p>
+					<p class="parameter-value">
+						<span>Metric</span>
+						<span>Number</span>
+						<span>%</span>
+					</p>
+					<p class="parameter-value">
+						<span>Metric</span>
+						<span>Number</span>
+						<span>%</span>
+					</p>
+					<p class="parameter-value">
+						<span>Metric</span>
+						<span>Number</span>
+						<span>%</span>
+					</p>
+					<p class="parameter-value">
+						<span>Metric</span>
+						<span>Number</span>
+						<span>%</span>
+					</p>
+					<p class="parameter-value">
+						<span>Metric</span>
+						<span>Number</span>
+						<span>%</span>
+					</p>
+					<p class="parameter-value">
+						<span>Metric</span>
+						<span>Number</span>
+						<span>%</span>
+					</p>
+					<p class="parameter-value">
+						<span>Metric</span>
+						<span>Number</span>
+						<span>%</span>
+					</p>
         </div>
         <div class="map__content">
           <?xml version="1.0" encoding="utf-8"?>
@@ -1225,7 +1255,11 @@
   <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
   <script src="scripts/countryData.js"></script>
   <script src='scripts/eventListeners.js'></script>
-  <script src='scripts/searchBar.js'></script>
+	<script src='scripts/searchBar.js'></script>
+	<script src='scripts/mapSearchBar.js'></script>
+	<script src='scripts/parameters.js'></script>
+	<script src='scripts/findCountry.js'></script>
+
 </body>
 
 </html>
