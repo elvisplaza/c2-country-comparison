@@ -35,25 +35,18 @@ $("path").on("mouseover", function () {
       countryIndicatorVal = "N/A";
       $(`.parameter-perc.${indicatorTag}`).addClass("no-display");
       // userCountryValue = "N/A"; //should actually just hide this
-      
     } else if (app.userCountryObject == undefined || app.userCountryObject == null) {
       countryIndicatorVal = Math.round(countryIndicatorVal);
-      $(`.parameter-perc.${indicatorTag}`).addClass('no-display');
+      $(`.parameter-perc`).addClass('no-display');
       // userCountryValue = "N/A"; //should actually just hide this
-      
-    } else if (userCountryValue > 0) {
-      countryIndicatorVal = Math.round(countryIndicatorVal);
-      userCountryValue = `${Math.round(((app.userCountryObject[indicatorID] - countryIndicatorVal) / countryIndicatorVal) * 100)}%`;
-      $(`.parameter-perc.${indicatorTag}`).css("color", "#66bf68");
-      // userCountryValue = countryIndicatorVal / userCountryValue;
-    } else if (userCountryValue <= 0) {
-      countryIndicatorVal = Math.round(countryIndicatorVal);
-      userCountryValue = `${Math.round(((app.userCountryObject[indicatorID] - countryIndicatorVal) / countryIndicatorVal) * 100)}%`;
-      $(`.parameter-perc.${indicatorTag}`).css("color", "#ed6562");
     } else {
       countryIndicatorVal = Math.round(countryIndicatorVal);
-      userCountryValue = Math.round(((app.userCountryObject[indicatorID] - countryIndicatorVal) / countryIndicatorVal) * 100);
+      userCountryValue = `${Math.round(((app.userCountryObject[indicatorID] - countryIndicatorVal) / countryIndicatorVal) * 100)}%`;
       $(`.parameter-perc.${indicatorTag}`).css("color", "#a8a8a8");
+    }
+
+    if (userCountryValue == null || userCountryValue == NaN || userCountryValue == undefined) {
+      userCountryValue = "N/A";
     }
 
 
@@ -70,7 +63,7 @@ $("path").on("mouseover", function () {
 
 $('body').on('click', function (e) {
   // console.log(e.target.classList);
-  if (e.target.classList.value === "button country-button" || e.target.classList.value === "button country-button" || e.target.classList.value === "settings-button button") {
+  if (e.target.classList.value === "button country-button" || e.target.classList.value === "settings-button button") {
     $(".country-name").text("Hover over a country for more info").css("font-size", "1.8rem");
     $(".country").removeClass("country--selected");
     $(".country-code").empty();

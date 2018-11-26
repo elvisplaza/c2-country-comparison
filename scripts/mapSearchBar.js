@@ -13,6 +13,8 @@ app.mainMenuSearchBar = (wordToMatch, country) => {
 // the function that takes the value from the input and maps throught and displays the found information. 
 app.mapCountrySearch = function () {
     $('.country-input__map-page').on('keyup copy paste cut change', function () {
+        
+        // $(this).closest(".form__map-page").removeClass('no-display');
         const currentValue = $(this).val();
         app.searchResults = app.mainMenuSearchBar(currentValue, app.countryDataArray);
         // console.log(app.searchResults);
@@ -26,7 +28,7 @@ app.mapCountrySearch = function () {
         getData2.then(function (array) {
             if ($('.country-input__map-page').val() !== "") {
                 $('.country-list__map-page').empty().append(array.slice(0, 5));
-                $('.country-list__map-page').removeClass("no-display");
+                $(".country-list__map-page").removeClass("no-display");
             } else {
                 $('.country-list__map-page').addClass("no-display");
             }
@@ -38,8 +40,9 @@ app.mapCountrySearch = function () {
 // app.userSelectedCountryId = 
 //SUBMIT BUTTON FOR MAIN-MENU PLEASE ADD TO EVENT LISTENERS. 
 app.submitCountryInput = function (e) {
-    e.preventDefault()
+    e.preventDefault();
     const value = $('.country-input__map-page').val();
+    $("#country-list__map-page").css('z-index', '100');
     const searchResultsArray = app.searchResults.filter(function (country) {
         return value.toLowerCase() == country.name.toLowerCase()
     })
@@ -58,8 +61,6 @@ $('.country-input__map-page').on('click', function () {
 })
 
 $('.form__map-page').on('submit', app.submitCountryInput);
-
-$('')
 
 
 $('.country-list__map-page').on('click', 'li', function (e) {

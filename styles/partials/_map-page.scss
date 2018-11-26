@@ -125,6 +125,10 @@
       padding-right: 0.5rem;
       opacity:1;
     }
+
+    .parameter-perc {
+      color: $highlightColor;
+    }
   }
 
   &__content {
@@ -162,4 +166,8 @@
 
   // transition & animation
   transition: all 0.5s ease 0.05s;
+}
+
+#country-list__map-page {
+  z-index: -500;
 }
