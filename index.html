@@ -16,10 +16,6 @@
   <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.1/css/all.css' integrity='sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz' crossorigin='anonymous'>
   <link rel='stylesheet' href='styles/style.css'>
 
-  <!-- Scripts -->
-  <!-- <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
-  <script src='scripts/countryData.js'></script> -->
-
   <title>World Bank API Project</title>
 </head>
 <body>
@@ -34,16 +30,18 @@
       <div class="modal__content" id="choose-country">
         <div class="modal__text">
           <h2>Choose your country</h2>
-          <form action="" id="country-form">
-              <label for="country-input" class="visuallyhidden">Enter your country</label>
-              <input type="text" id="country-input" placeholder="Enter your country..." class="input" autocomplete="off">
-              <ul class="country-list" id="country-list">
-              </ul>
-              <button class="button" id="country-submit"><span class="visuallyhidden">Go</span><i class="fas fa-arrow-right"></i></button>
-              <h4 class="toggle">Customize parameters</h4>
-              <fieldset class="toggle__content parameters-fieldset no-display">
-              </fieldset>
-          </form>
+          <form action="" autocomplete="off" class="form__map-page">
+              <label for="country-input__map-page" class="visuallyhidden">Enter your country</label>
+							<input type="text" class="input country-input__map-page" placeholder="Enter your country..." autocomplete="off">
+							<label for="submt__map--page" class="visuallyhidden"></label>
+							<button class="button submit__map-page"><span class="visuallyhidden">Go</span><i class="fas fa-arrow-right"></i></button>
+							<ul class="country-list__map-page" class="no-display">
+								<!-- li from search bar is placed here -->
+							</ul>
+					</form>
+					<h4 class="toggle">Customize parameters</h4>
+					<fieldset class="toggle__content parameters-fieldset no-display">
+					</fieldset>
           <h4 class="close">I just want to browse</h4>
         </div>
       </div>
@@ -53,31 +51,26 @@
 
     <!-- Main content section -->
     <section class="content">
-      
-      <!-- Modal - top 10 lists -->
-      <div class="modal">
-        <div class="modal__top-lists">
-          
-        </div>
-        <div class="modal__background no-display">
-        
-        </div>
-      </div>
-      
+
       <!-- Top navigation -->
       <nav>
         <ul class="main-menu">
           <!-- Search button/search bar -->
           <li class="main-menu__search">
-            <div class="button"><i class="fas fa-search"></i></div>
-            <label for="country-input" class="visuallyhidden">Enter a country of interest...</label>
-            <input type="text" id="country-input" placeholder="Enter a country of interest..." class="input">
-
+						<form autocomplete="off" action="" class="form__map-page">
+							<label for="country-input__map-page" class="visuallyhidden">Change countries...</label>
+							<input type="text" class="input country-input__map-page" placeholder="Change countries..." class="input">
+							<label for="submt__map--page" class="visuallyhidden"></label>
+							<button class="button submit__map-page"><span class="visuallyhidden">Go</span><i class="fas fa-arrow-right"></i></button>
+							<ul class="country-list__map-page" class="no-display">
+								<!-- li from search bar is placed here -->
+							</ul>
+						</form>
           </li>
 
           <!-- Settings button -->
           <li class="main-menu__settings">
-						<button class="button" id="settings-button">Settings</button>
+						<button class="settings-button button">Settings</button>
 						<div class="main-menu__parameters no-display">
 							<fieldset class="parameters-fieldset toggle__content">
 								<p>Parameters</p>
@@ -85,16 +78,12 @@
 						</div>
           </li>
 
-          <!-- Lists button -->
-          <li class="main-menu__lists">
-            <button class="button">
-              <i class="fas fa-bars"></i>
-            </button>
-          </li>
-
           <!-- Country button -->
           <li class="main-menu__country">
-            <button class="button">Canada</button>
+						<button class="button country-button">No country selected</button>
+						<div class="main-menu__chosen-country no-display">
+							<p class="chosen-capital-city"></p>
+						</div>
           </li>
         </ul>
       </nav>
@@ -102,10 +91,11 @@
       <!-- World map -->
       <div class="map">
         <!-- Country data (on hover) div -->
-        <div class="map__country-data">
-					<h2 class="country-name">Country</h2>
-					<p class="country-code">AA</p>
-        </div>
+        <div class="map__country-data no-display">
+					<h2 class="country-name">Hover over a country for more info</h2>
+					<p class="country-code"></p>
+					<p class="capital-city"></p>
+				</div>
         <div class="map__content">
           <?xml version="1.0" encoding="utf-8"?>
           <!-- Generator: Adobe Illustrator 23.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
@@ -1186,10 +1176,11 @@
   <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
   <script src="scripts/countryData.js"></script>
   <script src='scripts/eventListeners.js'></script>
-	<script src='scripts/searchBar.js'></script>
+	<!-- <script src='scripts/searchBar.js'></script> -->
 	<script src='scripts/mapSearchBar.js'></script>
 	<script src='scripts/parameters.js'></script>
 	<script src='scripts/findCountry.js'></script>
+	<script src='scripts/displayUserCountry.js'></script>
 
 </body>
 

@@ -8,7 +8,7 @@ app.searchResults = {};
 app.Init = function (){
   app.displayIndicators();
   app.countryDataPromise(); 
-  app.countrySearch();
+  // app.countrySearch();
   app.mapCountrySearch();
 }
 
@@ -24,14 +24,14 @@ app.indicatorObjects = [
     id: "SP.POP.TOTL.FE.IN",
     name: "Female Total Population",
     tag: "population_fem",
-    value: "Population (female)"
+    value: "Population (F)"
   },
 
   {
     id: "SP.POP.TOTL.MA.IN",
     name: "Male Total Population",
     tag: "population_male",
-    value: "Population (male)"
+    value: "Population (M)"
   },
 
   {
@@ -73,39 +73,35 @@ app.indicatorObjects = [
     id: "UIS.E.4",
     name: "Enrolment in Post-Secondary Education (both sexes)",
     tag: "education_ps",
-    value: "Education (post-secondary)"
+    value: "Education (post-sec)"
   },
 
   {
     id: "UIS.E.3.GPV",
     name: "Enrolment in Secondary Education",
     tag: "education_sec",
-    value: "Education (secondary)"
+    value: "Education (sec)"
   },
   {
     id: "SE.TOT.ENRR",
     name: "Gross enrolment ratio, primary school to tertiary (both sexes %)",
     tag: "education_prim",
-    value: "Education (primary)"
+    value: "Education (prim)"
   },
 
   {
     id: "SL.EMP.TOTL.SP.FE.NE.ZS",
     name: "Employment to population ratio, 15+, female (%)",
     tag: "employment_fem",
-    value: "Employment (female)"
+    value: "Employment (F)"
   },
 
   {
     id: "SL.EMP.TOTL.SP.MA.NE.ZS",
     name: "Employment to population ratio, 15+, male (%)",
     tag: "employment_male",
-    value: "Employment (male)"
-  }
-];  
-  { id: "SL.EMP.TOTL.SP.MA.NE.ZS",
-    name:"Employment to population ratio, 15+, male (%)"
-  }
+    value: "Employment (M)"
+  },
 ];
 
   app.indicatorCall = function (indicatorID) {
@@ -132,7 +128,6 @@ app.indicatorObjects = [
             const currCountryID = object.country.id;
             if (app.countryData[currCountryID] !== undefined) {
               app.countryData[currCountryID][indicatorID] = object.value;
-              
             }
           })
         })
@@ -184,44 +179,63 @@ app.indicatorObjects = [
 
     
 $(function() {
+
       app.Init();
-  //SUBMIT BUTTON FOR MAIN-MENU PLEASE ADD TO EVENT LISTENERS. 
-  $('.form-2').on('submit', function (e) {
-    e.preventDefault()
-    const value = $('#country-input-2').val();
-    if(value.toLowerCase() == app.searchResults[0].name.toLowerCase()){
-      const mapId = app.searchResults[0].geography.id
-      $(`#${mapId}`).toggleClass('highlight')
-    }
-  });
-// const selectList = function(){
-  $('#country-list-2').on('clickchange', 'li', function () {
-    $('#country-input-2:text').val('');
-    const text = $('#country-input-2');
-    clickedEvent = $(this).text();
-    text.val(text.val() + `${clickedEvent}`)
-  })
+    // when hit on input will clear map of highlights
+  // $('#country-input__map-page').on('click', function () {
+  //   $(`#${app.comparisonCountryId}`).css('fill', "")
+  // })
+  // //SUBMIT BUTTON FOR MAIN-MENU PLEASE ADD TO EVENT LISTENERS. 
+  // app.submitCountryInput = function(e){
+  //   e.preventDefault()
+  //   const value = $('#country-input__map-page').val();
+  //   const searchResultsArray = app.searchResults.filter(function(country){
+  //     return value.toLowerCase() == country.name.toLowerCase()
+  //   })
+  //   console.log("i work!")
+  //   if(searchResultsArray.length >= 1){
+  //     app.comparisonCountryId = searchResultsArray[0].geography.id
+  //     console.log(app.comparisonCountryId)
+  //     // $(`#${app.comparisonCountryId}`).addClass('country--highlight')
+  //     $(`#${app.comparisonCountryId}`).css("fill", "rgba(87, 128, 247, 1)");
+      
 
-// }
+  //   }
+
+  // }
+
+  // $('#country-input__map-page').on('click', function () {
+  //   $(`#${app.comparisonCountryId}`).css('fill', "")
+  // })
+
+  // $('#form__map-page').on('submit', app.submitCountryInput);
 
 
-  $('.country-list').on('click', 'li', function() {
-    // console.log(this);
-    clickedEvent = $(this).text();
+  // $('#country-list__map-page').on('click', 'li', function (e) {
+  //   const text = $('#country-input__map-page');
+  //   clickedText = $(this).text();
+  //   text.val(`${clickedText}`)
+  //   app.submitCountryInput(e);
+  //   $('#country-list__map-page').toggleClass('no-display')
+  // })
+
+  // $('.country-list__map-page').on('click', 'li', function() {
+  //   // console.log(this);
+  //   clickedEvent = $(this).text();
     
-    $(".country-list").addClass("no-display");
-  })
+  //   $(".country-list__map-page").addClass("no-display");
+  // })
 
-  $('.modal__content').on('click', function(e){
-    if (e.target.className !== "country-list__item") {
-      $(".modal__content").addClass("no-display");
-      // parametersDiv.addClass("no-display");
-    }
-  })
+  // $('.modal__content').on('click', function(e){
+  //   if (e.target.className !== "country-list__item") {
+  //     $(".modal__content").addClass("no-display");
+  //     // parametersDiv.addClass("no-display");
+  //   }
+  // })
   
+});
 
 
-})
 
-})
+
 

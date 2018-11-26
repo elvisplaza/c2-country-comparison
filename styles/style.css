@@ -365,6 +365,87 @@ fieldset {
     position: absolute;
     width: 300px; }
 
+.main-menu__country {
+  position: relative; }
+
+.main-menu__chosen-country {
+  background: rgba(76, 76, 76, 0.75);
+  padding: 0.5rem 3.5rem;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  height: auto;
+  max-height: 300px;
+  width: auto;
+  max-width: 300px;
+  overflow-y: scroll; }
+  .main-menu__chosen-country .chosen-country-name,
+  .main-menu__chosen-country .chosen-country-code,
+  .main-menu__chosen-country .chosen-capital-city {
+    font-family: "Space Mono", monospace;
+    display: inline-block;
+    margin-bottom: 0rem; }
+  .main-menu__chosen-country .chosen-country-name {
+    text-transform: none;
+    font-size: 2.25rem;
+    padding-right: 0.5rem; }
+  .main-menu__chosen-country .chosen-country-code {
+    font-size: 1.5rem;
+    opacity: 0.7;
+    padding-right: 0.5rem; }
+  .main-menu__chosen-country .chosen-capital-city {
+    font-size: 1.2rem;
+    opacity: 0.7; }
+  .main-menu__chosen-country .parameter-value-sc {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 0.05rem; }
+  .main-menu__chosen-country .parameter-name-sc {
+    padding-right: 0.5rem;
+    opacity: 0.5; }
+  .main-menu__chosen-country .parameter-num-sc {
+    padding-right: 0.5rem;
+    opacity: 1; }
+
+.map__country-data {
+  background: rgba(76, 76, 76, 0.5);
+  padding: 0.5rem 3.5rem;
+  margin: 2rem 4rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: auto;
+  max-height: 300px;
+  width: 350px;
+  overflow-y: scroll; }
+  .map__country-data .country-name,
+  .map__country-data .country-code,
+  .map__country-data .capital-city {
+    font-family: "Space Mono", monospace;
+    display: inline-block;
+    margin-bottom: 0rem; }
+  .map__country-data .country-name {
+    text-transform: none;
+    font-size: 2.25rem;
+    padding-right: 0.5rem; }
+  .map__country-data .country-code {
+    font-size: 1.5rem;
+    opacity: 0.7;
+    padding-right: 0.5rem; }
+  .map__country-data .capital-city {
+    font-size: 1.2rem;
+    opacity: 0.7; }
+  .map__country-data .parameter-value {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 0.05rem; }
+  .map__country-data .parameter-name {
+    padding-right: 0.5rem;
+    opacity: 0.5; }
+  .map__country-data .parameter-num {
+    padding-right: 0.5rem;
+    opacity: 1; }
+
 .map__content .country {
   -webkit-transform-origin: center;
   -ms-transform-origin: center;
@@ -372,16 +453,6 @@ fieldset {
   -webkit-transition: all 0.5s ease 0.05s;
   -o-transition: all 0.5s ease 0.05s;
   transition: all 0.5s ease 0.05s; }
-  .map__content .country:hover {
-    stroke: #5780f7;
-    stroke-width: 2;
-    fill: #a3e2a3;
-    -webkit-transform-origin: center;
-    -ms-transform-origin: center;
-    transform-origin: center;
-    -webkit-transition: all 0.5s ease 0.05s;
-    -o-transition: all 0.5s ease 0.05s;
-    transition: all 0.5s ease 0.05s; }
 
 .background-fill {
   fill-rule: evenodd;
@@ -390,3 +461,14 @@ fieldset {
   stroke: #2D2D2D;
   stroke-width: 0.5;
   stroke-linejoin: round; }
+
+.country--highlight {
+  fill: #5780f7; }
+
+.country--selected {
+  stroke: #5780f7;
+  stroke-width: 2;
+  fill: #a3e2a3;
+  -webkit-transition: all 0.5s ease 0.05s;
+  -o-transition: all 0.5s ease 0.05s;
+  transition: all 0.5s ease 0.05s; }

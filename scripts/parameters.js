@@ -1,42 +1,24 @@
-
-// Parameter values are set to true by default and stored in an array
-// On click, parameter value is changed in array AND value in div is changed
-// On click again, boolean value changes
-// Everytime the user clicks, the value changes instantly
-// Use label classes for the click functions
-
-// Create a function which goes through the indicator objects array and appends each item to the DOM as a parameter label tag
 app.displayIndicators = function(){
   app.indicatorObjects.forEach(function (object) {
     const parameterLabel = `
     <label class="label label--selected" for="${object.tag}">${object.value}</label>
-    <input type="checkbox" id="${object.tag}" value="${object.value}" data-code="${object.id}" class="parameter-input visuallyhidden" checked>`;
+    <input type="checkbox" id="${object.tag}" value="${object.value}" class="parameter-input visuallyhidden" checked>`;
     $(".parameters-fieldset").append(parameterLabel);
 
     const parameterCountryData = `<p class="parameter-value ${object.tag}">
 						<span class="parameter-name ${object.tag}">${object.value}</span>
 					</p>`;
     $(".map__country-data").append(parameterCountryData);
+
+    const scParameterCountryData = `<p class="parameter-value-sc ${object.tag}">
+						<span class="parameter-name-sc ${object.tag}">${object.value}</span>
+					</p>`;
+    $(".main-menu__chosen-country").append(scParameterCountryData);
+
   });
 
-  app.parameterVisibility();
 }
 
-// Check each parameter input, see if it is checked, if yes, display it on the map overlay box
-app.parameterVisibility = function(){
-  $(".parameter-input").each(function() {
-    // console.log(object);
-    const paramVal = $('.parameter-value');
-    // const classToCheck = $('')
-    // if ($(this).prop("checked") === true) {
-    //   paramVal.hasClass(`${object.id}`).removeClass('no-display');
-    //   console.log(`${dataKey} is checked`);
-    // } else {
-    //   paramVal.hasClass(`${object.id}`).addClass('no-display');
-    //   console.log(`${dataKey} is not checked`);
-    // }
-  });
-}
 
 
 
