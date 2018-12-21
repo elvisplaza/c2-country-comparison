@@ -12,7 +12,7 @@ This project was built in jQuery, JavaScript, HTML and CSS3/Sass. Application da
 * Ana Maljkovic: [Github](https://github.com/anamaljkovic) | [Web](https://anamaljkovic.com)
 * Elvis Plaza: [Github](https://github.com/elvisplaza) | [Web](http://elvisplaza.com/)
 
-This project was built as part of the [HackerYou Web Development Immersive program](https://hackeryou.com/courses/bootcamp).
+This project was made as part of the [HackerYou Web Development Immersive program](https://hackeryou.com/courses/bootcamp).
 
 <!-- ## Acknowledgements
 This project was built with the [HackerYou Spotify OAuth Proxy](https://github.com/HackerYou/spotify-oauth-proxy) by [Ryan Christiani](https://github.com/Rchristiani). -->
