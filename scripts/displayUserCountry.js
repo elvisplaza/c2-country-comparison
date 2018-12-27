@@ -1,10 +1,9 @@
 app.displayChosenCountry = function(){
-    $(".main-menu__chosen-country").removeClass("no-display");
+    // $(".main-menu__chosen-country").removeClass("no-display");
     $(".parameter-value-sc").removeClass("no-display");
 
     $(`.parameter-num-sc`).remove();
 
-    
     const countryName = app.countryData[app.userCountryID].name;
     const countryCapital = app.countryData[app.userCountryID].capital;
     // console.log(countryCapital);
@@ -18,7 +17,6 @@ app.displayChosenCountry = function(){
 
       // Grab indicator tag from array
       const indicatorTag = item.tag;
-
 
       // Grab value of indicator for chosen country from app.countryData object
       let scCountryIndicatorVal = app.countryData[app.userCountryID][indicatorID];

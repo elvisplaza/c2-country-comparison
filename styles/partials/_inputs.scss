@@ -20,7 +20,7 @@
   font-weight: 500;
 }
 
-.country-list {
+.country-list__map-page {
   // background
   background: rgba(76, 76, 76, 1);
 
@@ -34,7 +34,7 @@
   min-width: 300px;
   width: 40%;
 
-  &__item {
+  .country-list__item {
     // text
     color: rgba($textColor, 0.5);
     font-family: $secondaryTypeface;
@@ -45,13 +45,13 @@
 
     &:hover {
       // background
-      background: lighten(rgba(76, 76, 76, 0.75), 10);
+      background: lighten($highlightColor, 2);
 
       // cursor
       cursor: pointer;
 
       // text
-      color: rgba($textColor, 0.75);
+      color: rgba($textColor, 0.95);
     }
   }
 }

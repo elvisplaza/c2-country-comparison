@@ -16,7 +16,7 @@
   <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.1/css/all.css' integrity='sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz' crossorigin='anonymous'>
   <link rel='stylesheet' href='styles/style.css'>
 
-  <title>World Bank API Project</title>
+  <title>C Squared | Country comparison tool.</title>
 </head>
 <body>
   
@@ -54,7 +54,7 @@
 
       <!-- Top navigation -->
       <nav>
-        <ul class="main-menu">
+        <ul class="main-menu no-display">
           <!-- Search button/search bar -->
           <li class="main-menu__search">
 						<form autocomplete="off" action="" class="form__map-page">
@@ -62,7 +62,7 @@
 							<input type="text" class="input country-input__map-page" placeholder="Change countries..." class="input">
 							<label for="submt__map--page" class="visuallyhidden"></label>
 							<button class="button submit__map-page"><span class="visuallyhidden">Go</span><i class="fas fa-arrow-right"></i></button>
-							<ul class="country-list__map-page" class="no-display">
+							<ul class="country-list__map-page no-display" id="country-list__map-page">
 								<!-- li from search bar is placed here -->
 							</ul>
 						</form>
@@ -80,7 +80,7 @@
 
           <!-- Country button -->
           <li class="main-menu__country">
-						<button class="button country-button">No country selected</button>
+						<button class="country-button button">No country selected</button>
 						<div class="main-menu__chosen-country no-display">
 							<p class="chosen-capital-city"></p>
 						</div>

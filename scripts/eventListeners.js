@@ -49,7 +49,7 @@ $('.settings-button').on('click', function(){
 $('.country-button').on('click', function () {
   if (app.userCountryID !== undefined) {
     $(".main-menu__chosen-country").toggleClass("no-display");
-    $(this).toggleClass("button--highlight");
+    // $(this).toggleClass("button--highlight");
   }
 });
 
