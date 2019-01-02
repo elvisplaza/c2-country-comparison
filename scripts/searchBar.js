@@ -91,6 +91,7 @@ app.submitCountryInput = function (searchInputID, thisRef) {
         // Find object matching country ID in country data dataset and store
         app.userCountryObject = app.countryData[app.userCountryID];
         // Add highlight to country on map
+        $('path').removeClass('country--highlight');
         $(`#${app.userCountryID}`).addClass('country--highlight');
         // Display chosen country
         app.displayChosenCountry();
@@ -110,6 +111,7 @@ $('.country-form--main-page').on('submit', function(e){
 });
 
 $('.country-form--map-page').on('submit', function(e){
+    console.log('map page submitted');
     // Prevent default form submission action
     e.preventDefault();
     const self = this;
