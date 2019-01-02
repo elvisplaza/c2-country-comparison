@@ -1,4 +1,4 @@
-
+// Initializing variables
 app.apiURL = 'https://api.worldbank.org/V2/';
 app.countriesEndpoint = `countries/`;
 app.indicatorsEndpoint = `all/indicators/`;

@@ -327,7 +327,7 @@ fieldset {
   align-items: center;
   justify-content: center;
   padding: 4rem 3rem;
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -368,15 +368,17 @@ fieldset {
 }
 .modal__background {
   background: rgba(45, 45, 45, 0.9);
-  position: absolute;
-  z-index: 0;
+  position: fixed;
+  z-index: 50;
   height: 100vh;
   width: 100%;
+  overflow-x: scroll;
 }
 
 .main-menu {
   display: flex;
   flex-direction: row;
+  position: fixed;
 }
 .main-menu__search .input {
   min-width: 375px;
@@ -385,9 +387,13 @@ fieldset {
 .main-menu__search, .main-menu__settings, .main-menu__lists, .main-menu__country {
   padding-right: 1.5rem;
 }
+.main-menu__country {
+  position: relative;
+}
 .main-menu__parameters {
   background: rgba(76, 76, 76, 0.5);
   position: absolute;
+  top: 50px;
   width: 300px;
 }
 .main-menu__chosen-country {
@@ -512,8 +518,6 @@ fieldset {
 }
 
 .country--selected {
-  stroke: #5780f7;
-  stroke-width: 2;
   fill: #a3e2a3;
   transition: all 0.5s ease 0.05s;
 }

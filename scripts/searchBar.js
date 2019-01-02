@@ -47,33 +47,6 @@ app.changeUserCountry = (clickedLi, inputID) => {
     countryInput.val(`${selectedCountry}`);
 }
 
-// On click of any list item in dropdown menu on main page, change user country
-$('.country-list--main-page').on('click touchend', 'li', function () {
-    // Store "this" of clicked li in variable
-    const clickedCountry = this;
-    // Run function to change user country to clicked value and display in input field
-    app.changeUserCountry(clickedCountry, '#country-input--main-page');
-    // Hide search list modal
-    $('.country-list--main-page').toggleClass('no-display');
-})
-
-// On click of any list item in dropdown menu on map page, change user country
-$('.country-list--map-page').on('click touchend', 'li', function () {
-    // Store "this" of clicked li in variable
-    const clickedCountry = this;
-    // Run function to change user country to clicked value and display in input field
-    app.changeUserCountry(clickedCountry, '#country-input--map-page');
-    // Hide search list modal
-    $('.country-list--map-page').toggleClass('no-display');
-})
-
-// app.submitCountryInput(e, '#country-input--main-page', '.country-list--main-page');
-// $(this).closest('.modal').toggleClass('no-display');
-// Change this to be on submit
-// $('#country-input--map-page').on('click', function () {
-//     $(`#${app.userCountryID}`).removeClass('country--highlight');
-// })
-
 // Country input submit
 app.submitCountryInput = function (searchInputID, thisRef) {
     // Set value to search input value
@@ -102,22 +75,6 @@ app.submitCountryInput = function (searchInputID, thisRef) {
     // Hide modal
     $(thisRef).closest('.modal').toggleClass('no-display');
 }
-
-$('.country-form--main-page').on('submit', function(e){
-    // Prevent default form submission action
-    e.preventDefault();
-    const self = this;
-    app.submitCountryInput('#country-input--main-page', self);
-});
-
-$('.country-form--map-page').on('submit', function(e){
-    console.log('map page submitted');
-    // Prevent default form submission action
-    e.preventDefault();
-    const self = this;
-    app.submitCountryInput('#country-input--map-page', self);
-});
-
 
 // Function to show chosen country
 app.displayChosenCountry = function () {

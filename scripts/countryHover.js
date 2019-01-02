@@ -36,21 +36,6 @@ $("path").on("mouseover touchend", function () {
     // Initialize user country value
     let userCountryValue;
 
-    
-    // population 
-    // population_fem
-    // population_male
-    // gdp
-    // gdp-growth
-    // life-expectancy
-    // poverty
-    // co2
-    // education_ps
-    // education_sec
-    // education_prim
-    // employment_fem
-    // employment_male
-
     // Check if comparison country value is null or undefined, if yes, show "N/A", if no, round to nearest integer
     if (countryIndicatorVal == null || countryIndicatorVal == undefined) {
       countryIndicatorVal = "N/A";
