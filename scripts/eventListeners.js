@@ -16,6 +16,14 @@ $(".parameters-fieldset").on("click", "label", function() {
 //   if $(this).hasClass('label--selec')
 // })
 
+$('#country-input--main-page').on('keyup copy paste cut change', function(){
+  app.countrySearch('#country-input--main-page', '.country-list--main-page');
+});
+
+$('#country-input--map-page').on('keyup copy paste cut change', function(){
+  app.countrySearch('#country-input--map-page', '.country-list--map-page');
+});
+
 // On click of "I just want to browse" text, hide modal
 $('.close').on('click', function(){
   $(this).closest('.modal').addClass('no-display');
@@ -27,7 +35,7 @@ $('.toggle').on('click', function(){
 })
 
 // On click of country submit button
-$(".form__map-page").on("submit", function(e) {
+$(".country-form").on("submit", function(e) {
   e.preventDefault();
   $(this)
     .closest(".modal")
@@ -35,8 +43,8 @@ $(".form__map-page").on("submit", function(e) {
 });
 
 $('.country').on('mouseover', function(){
-  const clickedCountryID = $(this).attr("id");
-  $('.country-name').text(clickedCountryID);
+  // const clickedCountryID = $(this).attr("id");
+  // $('.country-name').text(clickedCountryID);
   $(".country").removeClass("country--selected");
   $(this).addClass('country--selected');
 })
@@ -49,7 +57,20 @@ $('.settings-button').on('click', function(){
 $('.country-button').on('click', function () {
   if (app.userCountryID !== undefined) {
     $(".main-menu__chosen-country").toggleClass("no-display");
-    // $(this).toggleClass("button--highlight");
   }
+});
+
+// Initializing function
+app.init = function () {
+  app.displayIndicators();
+  app.topCountries();
+  app.countryDataPromise();
+  app.countrySearch();
+  app.cheatCodes();
+}
+
+// Document ready
+$(function () {
+  app.init();
 });
 

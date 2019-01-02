@@ -5,8 +5,18 @@
 ## Methodology
 - Link to a Medium post -->
 
+## Features
+* Global country search with autofill
+* Access to World Bank country data for 10+ indicator values
+* Interactive SVG map
+* Side-by-side indicator comparison calculations on hover 
+* Secondary search bar to easily update selected country from map page
+* Top 10 country lists per indicator
+* Option to save countries of interest to personal database (via Firebase)
+* Bonus codes: try out _038_ for gender equality mode
+
 ## Technologies and Frameworks Used
-This project was built in jQuery, JavaScript, HTML and CSS3/Sass. Application data is handled using Firebase and the [live site](https://anamaljkovic.com/c-squared/) was deployed via Github Pages.
+This project was built in jQuery, JavaScript, HTML5 and CSS3/Sass. Application data is handled using Firebase and the [live site](https://anamaljkovic.com/c-squared/) was deployed via Github Pages.
 
 ## Authors
 * Ana Maljkovic: [Github](https://github.com/anamaljkovic) | [Web](https://anamaljkovic.com)
@@ -14,5 +24,5 @@ This project was built in jQuery, JavaScript, HTML and CSS3/Sass. Application da
 
 This project was made as part of the [HackerYou Web Development Immersive program](https://hackeryou.com/courses/bootcamp).
 
-<!-- ## Acknowledgements
-This project was built with the [HackerYou Spotify OAuth Proxy](https://github.com/HackerYou/spotify-oauth-proxy) by [Ryan Christiani](https://github.com/Rchristiani). -->
+## Acknowledgements
+* SVG map courtesy of [SimpleMaps](https://simplemaps.com/resources/svg-world)

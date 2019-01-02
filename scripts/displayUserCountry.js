@@ -1,12 +1,11 @@
+
 app.displayChosenCountry = function(){
-    // $(".main-menu__chosen-country").removeClass("no-display");
     $(".parameter-value-sc").removeClass("no-display");
 
     $(`.parameter-num-sc`).remove();
 
     const countryName = app.countryData[app.userCountryID].name;
     const countryCapital = app.countryData[app.userCountryID].capital;
-    // console.log(countryCapital);
 
     $(".main-menu__country .button").text(`${countryName} (${app.userCountryID})`);
     $('.chosen-capital-city').text(`Capital: ${countryCapital}`);
@@ -27,14 +26,12 @@ app.displayChosenCountry = function(){
       } 
       
       if (scCountryIndicatorVal == null || scCountryIndicatorVal == undefined) {
-        $(".main-menu__chosen-country").removeClass("no-display");
+        // $(".main-menu__chosen-country").removeClass("no-display");
         scCountryIndicatorVal = "N/A";
       }
 
       // Find indicator location in DOM and fill with data
       const scCountryHTML = `<span class="parameter-num-sc ${indicatorTag}">${scCountryIndicatorVal}</span>`;
-      // $(`.parameter-num .${indicatorTag}`).text("");
-      // $(`.parameter-value .${indicatorTag}`).empty();s
 
       $(`.parameter-value-sc.${indicatorTag}`).append(scCountryHTML);
 

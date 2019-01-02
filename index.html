@@ -14,7 +14,9 @@
   <link rel="stylesheet" href="https://use.typekit.net/dri0lhd.css">
   <link href="https://fonts.googleapis.com/css?family=Space+Mono:400,700" rel="stylesheet">
   <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.1/css/all.css' integrity='sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz' crossorigin='anonymous'>
-  <link rel='stylesheet' href='styles/style.css'>
+	<link rel='stylesheet' href='styles/style.css'>
+	
+	
 
   <title>C Squared | Country comparison tool.</title>
 </head>
@@ -30,12 +32,12 @@
       <div class="modal__content" id="choose-country">
         <div class="modal__text">
           <h2>Choose your country</h2>
-          <form action="" autocomplete="off" class="form__map-page">
-              <label for="country-input__map-page" class="visuallyhidden">Enter your country</label>
-							<input type="text" class="input country-input__map-page" placeholder="Enter your country..." autocomplete="off">
+          <form action="" autocomplete="off" class="country-form">
+              <label for="country-input--main-page" class="visuallyhidden">Enter your country</label>
+							<input type="text" class="input" id="country-input--main-page" placeholder="Enter your country..." autocomplete="off">
 							<label for="submt__map--page" class="visuallyhidden"></label>
 							<button class="button submit__map-page"><span class="visuallyhidden">Go</span><i class="fas fa-arrow-right"></i></button>
-							<ul class="country-list__map-page" class="no-display">
+							<ul class="country-list country-list--main-page no-display">
 								<!-- li from search bar is placed here -->
 							</ul>
 					</form>
@@ -57,12 +59,12 @@
         <ul class="main-menu no-display">
           <!-- Search button/search bar -->
           <li class="main-menu__search">
-						<form autocomplete="off" action="" class="form__map-page">
-							<label for="country-input__map-page" class="visuallyhidden">Change countries...</label>
-							<input type="text" class="input country-input__map-page" placeholder="Change countries..." class="input">
-							<label for="submt__map--page" class="visuallyhidden"></label>
+						<form autocomplete="off" action="" class="country-form">
+							<label for="country-input--map-page" class="visuallyhidden">Change countries...</label>
+							<input type="text" class="input" id="country-input--map-page" placeholder="Change countries..." class="input">
+							<label for="submit__map--page" class="visuallyhidden"></label>
 							<button class="button submit__map-page"><span class="visuallyhidden">Go</span><i class="fas fa-arrow-right"></i></button>
-							<ul class="country-list__map-page no-display" id="country-list__map-page">
+							<ul class="country-list country-list--map-page no-display">
 								<!-- li from search bar is placed here -->
 							</ul>
 						</form>
@@ -92,7 +94,7 @@
       <div class="map">
         <!-- Country data (on hover) div -->
         <div class="map__country-data no-display">
-					<h2 class="country-name">Hover over a country for more info</h2>
+					<h2 class="country-name">Hover over or tap a country for more info</h2>
 					<p class="country-code"></p>
 					<p class="capital-city"></p>
 				</div>
@@ -1172,16 +1174,19 @@
   </main>
 
   <footer>
-  </footer>
-  <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
-  <script src="scripts/countryData.js"></script>
-  <script src='scripts/eventListeners.js'></script>
-	<!-- <script src='scripts/searchBar.js'></script> -->
-	<script src='scripts/mapSearchBar.js'></script>
-	<script src='scripts/parameters.js'></script>
-	<script src='scripts/findCountry.js'></script>
+	</footer>
+	
+	<!-- Scripts -->
+	<script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='
+	crossorigin='anonymous'></script>
+	<script src='scripts/searchBar.js'></script>
+	<script src="scripts/countryData.js"></script>
+	<script src='scripts/displayParameters.js'></script>
+	<script src='scripts/countryHover.js'></script>
 	<script src='scripts/displayUserCountry.js'></script>
-
+	<script src='scripts/cheatCodes.js'></script>
+	<script src='scripts/topCountries.js'></script>
+	<script src='scripts/eventListeners.js'></script>
 </body>
 
 </html>
