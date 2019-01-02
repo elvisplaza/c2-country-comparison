@@ -9,17 +9,17 @@ app.topCountries = function(){
 
   });
 
-  console.log(app.topTen);
+  // console.log(app.topTen);
 }
 
 app.findTopTen = function (indicatorID) {
-  console.log(indicatorID);
-  console.log(app.countryDataArray);
+  // console.log(indicatorID);
+  // console.log(app.countryDataArray);
   const allVals = app.countryDataArray.map(country => {
-    console.log(country);
+    // console.log(country);
     return country[indicatorID];
   });
-  console.log(allVals);
+  // console.log(allVals);
   allVals.id = indicatorID;
   app.topTen.push(allVals);
 }

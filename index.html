@@ -32,11 +32,11 @@
       <div class="modal__content" id="choose-country">
         <div class="modal__text">
           <h2>Choose your country</h2>
-          <form action="" autocomplete="off" class="country-form">
+          <form action="" autocomplete="off" class="country-form--main-page">
               <label for="country-input--main-page" class="visuallyhidden">Enter your country</label>
 							<input type="text" class="input" id="country-input--main-page" placeholder="Enter your country..." autocomplete="off">
-							<label for="submt__map--page" class="visuallyhidden"></label>
-							<button class="button submit__map-page"><span class="visuallyhidden">Go</span><i class="fas fa-arrow-right"></i></button>
+							<!-- <label for="submit__main-page" class="visuallyhidden"></label> -->
+							<button class="button submit__main-page"><span class="visuallyhidden">Go</span><i class="fas fa-arrow-right"></i></button>
 							<ul class="country-list country-list--main-page no-display">
 								<!-- li from search bar is placed here -->
 							</ul>
@@ -62,7 +62,7 @@
 						<form autocomplete="off" action="" class="country-form">
 							<label for="country-input--map-page" class="visuallyhidden">Change countries...</label>
 							<input type="text" class="input" id="country-input--map-page" placeholder="Change countries..." class="input">
-							<label for="submit__map--page" class="visuallyhidden"></label>
+							<!-- <label for="submit__map-page" class="visuallyhidden"></label> -->
 							<button class="button submit__map-page"><span class="visuallyhidden">Go</span><i class="fas fa-arrow-right"></i></button>
 							<ul class="country-list country-list--map-page no-display">
 								<!-- li from search bar is placed here -->
@@ -1183,7 +1183,6 @@
 	<script src="scripts/countryData.js"></script>
 	<script src='scripts/displayParameters.js'></script>
 	<script src='scripts/countryHover.js'></script>
-	<script src='scripts/displayUserCountry.js'></script>
 	<script src='scripts/cheatCodes.js'></script>
 	<script src='scripts/topCountries.js'></script>
 	<script src='scripts/eventListeners.js'></script>

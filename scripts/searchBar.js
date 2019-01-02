@@ -5,11 +5,12 @@ app.searchFunction = (wordToMatch, country) => {
     return country.filter(function (place) {
     // Figure out if country or capital city matches searched term
     const regex = new RegExp(wordToMatch, 'gi');
-    return place.name.match(regex) || place.capital.match(regex)
+    // return place.name.match(regex) || place.capital.match(regex)
+    return place.name.match(regex)
   });
 }
 
-// Take user input and run through country search function to show results list -- used in 2 locations so need 
+// Take user input and run through country search function to show results list
 app.countrySearch = function(searchInputID, resultsListClass) {
     // Pull value of input and store in variable
     const currentValue = $(searchInputID).val();
@@ -36,10 +37,45 @@ app.countrySearch = function(searchInputID, resultsListClass) {
     })
 }
 
+// Method to change user country
+app.changeUserCountry = (clickedLi, inputID) => {
+    // Store country input in variable
+    const countryInput = $(inputID);
+    // Store text value of selected country
+    selectedCountry = $(clickedLi).text();
+    // Update input to display text value of selected country
+    countryInput.val(`${selectedCountry}`);
+}
+
+// On click of any list item in dropdown menu on main page, change user country
+$('.country-list--main-page').on('click touchend', 'li', function () {
+    // Store "this" of clicked li in variable
+    const clickedCountry = this;
+    // Run function to change user country to clicked value and display in input field
+    app.changeUserCountry(clickedCountry, '#country-input--main-page');
+    // Hide search list modal
+    $('.country-list--main-page').toggleClass('no-display');
+})
+
+// On click of any list item in dropdown menu on map page, change user country
+$('.country-list--map-page').on('click touchend', 'li', function () {
+    // Store "this" of clicked li in variable
+    const clickedCountry = this;
+    // Run function to change user country to clicked value and display in input field
+    app.changeUserCountry(clickedCountry, '#country-input--map-page');
+    // Hide search list modal
+    $('.country-list--map-page').toggleClass('no-display');
+})
+
+// app.submitCountryInput(e, '#country-input--main-page', '.country-list--main-page');
+// $(this).closest('.modal').toggleClass('no-display');
+// Change this to be on submit
+// $('#country-input--map-page').on('click', function () {
+//     $(`#${app.userCountryID}`).removeClass('country--highlight');
+// })
+
 // Country input submit
-app.submitCountryInput = function (e, searchInputID, resultsListClass) {
-    // Prevent default form submission action
-    e.preventDefault();
+app.submitCountryInput = function (searchInputID, thisRef) {
     // Set value to search input value
     const value = $(searchInputID).val();
 
@@ -47,7 +83,7 @@ app.submitCountryInput = function (e, searchInputID, resultsListClass) {
     const searchResultsArray = app.searchResults.filter(function (country) {
         return value.toLowerCase() == country.name.toLowerCase()
     })
-    
+    console.log(searchResultsArray);
     // If there is a matching value, then:
     if (searchResultsArray.length === 1) {
         // Store user country ID
@@ -58,47 +94,65 @@ app.submitCountryInput = function (e, searchInputID, resultsListClass) {
         $(`#${app.userCountryID}`).addClass('country--highlight');
         // Display chosen country
         app.displayChosenCountry();
+    } else {
+        // Alert the user that their country is invalid
+        alert('Invalid country. Please try again.');
     }
     // Hide modal
-    // $(this).closest('.modal').toggleClass('no-display');
+    $(thisRef).closest('.modal').toggleClass('no-display');
 }
 
-$('#country-input--map-page').on('click', function () {
-    $(`#${app.userCountryID}`).removeClass('country--highlight');
-})
+$('.country-form--main-page').on('submit', function(e){
+    // Prevent default form submission action
+    e.preventDefault();
+    const self = this;
+    app.submitCountryInput('#country-input--main-page', self);
+});
 
-// $('.country-form').on('submit', function(){
-//     app.submitCountryInput(e, , );
-// });
-
-
-// $('.country-form').on('submit', function () {
-//     app.submitCountryInput(e, , );
-// });
-
-// $('.country-form').on('submit', function () {
-//     app.submitCountryInput(e, '', '');
-// }
+$('.country-form--map-page').on('submit', function(e){
+    // Prevent default form submission action
+    e.preventDefault();
+    const self = this;
+    app.submitCountryInput('#country-input--map-page', self);
+});
 
 
-$('.country-list--main-page').on('click', 'li', function (e) {
-    const text = $('#country-input--main-page');
-    clickedText = $(this).text();
-    text.val(`${clickedText}`)
-    app.submitCountryInput(e, '#country-input--main-page', '.country-list--main-page');
-    $('.country-list--main-page').toggleClass('no-display');
-    $(this).closest('.modal').toggleClass('no-display');
-})
+// Function to show chosen country
+app.displayChosenCountry = function () {
+    $(".parameter-value-sc").removeClass("no-display");
 
-// On click of list item on map page
-$('.country-list--map-page').on('click', 'li', function (e) {
-    // Store text in variable
-    const text = $('#country-input--map-page');
-    clickedText = $(this).text();
-    text.val(`${clickedText}`)
-    app.submitCountryInput(e, '#country-input--map-page', '.country-list--main-page');
-    $('.country-list--map-page').toggleClass('no-display');
-    $(this).closest('.modal').toggleClass('no-display');
-})
+    $(`.parameter-num-sc`).remove();
 
+    const countryName = app.countryData[app.userCountryID].name;
+    const countryCapital = app.countryData[app.userCountryID].capital;
 
+    $(".main-menu__country .button").text(`${countryName} (${app.userCountryID})`);
+    $('.chosen-capital-city').text(`Capital: ${countryCapital}`);
+
+    app.indicatorObjects.forEach(function (item) {
+        // Grab indicator ID from array
+        const indicatorID = item.id;
+
+        // Grab indicator tag from array
+        const indicatorTag = item.tag;
+
+        // Grab value of indicator for chosen country from app.countryData object
+        let scCountryIndicatorVal = app.countryData[app.userCountryID][indicatorID];
+
+        // Check if value is null or undefined, if yes, show "N/A", if no, round to nearest integer
+        if (app.userCountryID == undefined || app.userCountryID == null) {
+            $(".main-menu__chosen-country").addClass("no-display");
+        }
+
+        if (scCountryIndicatorVal == null || scCountryIndicatorVal == undefined) {
+            // $(".main-menu__chosen-country").removeClass("no-display");
+            scCountryIndicatorVal = "N/A";
+        }
+
+        // Find indicator location in DOM and fill with data
+        const scCountryHTML = `<span class="parameter-num-sc ${indicatorTag}">${scCountryIndicatorVal}</span>`;
+
+        $(`.parameter-value-sc.${indicatorTag}`).append(scCountryHTML);
+
+    })
+}
