@@ -133,30 +133,63 @@ app.prepareForDOM = (tag, num) => {
   return value;
 }
 
+// Function to calculate difference between two values
 app.calculateComparisonDiff = (num1, num2, indicatorTag) => {
+  console.log(indicatorTag, num1, num2);
+  // Initialize variable for value
   let value;
-  if (num1 == null || num2 == null) {
+  // If both numerical values are null, or the second (hovered country) value is null, set the value to an empty string
+  if (num1 == null && num2 == null || num2 == null) {
+    value = '';
+  // If only the user value is null, set the comparison value to 'N/A'
+  } else if (num1 == null) {
     value = 'N/A';
-  } else if (indicatorTag === 'population' || indicatorTag === 'population_fem' || indicatorTag === 'population_male' || indicatorTag === 'gdp' || indicatorTag === 'education_ps' || indicatorTag === 'education_sec') {
-    value = ((num2 - num1) / num1).toFixed(2);
+  } else if (indicatorTag === 'population' || indicatorTag === 'population_fem' || indicatorTag === 'population_male') {
+    value = (num2 - num1)/1000000;
+  } else if (indicatorTag === 'gdp' || indicatorTag === 'education_ps' || indicatorTag === 'education_sec') {
+    value = (num2 / num1) * 100;
   } else if (indicatorTag === 'gdp-growth' || indicatorTag === 'education_sec' || indicatorTag === 'education_prim' || indicatorTag === 'employment_fem' || indicatorTag === 'employment_male') {
-    value = `${(num2 - num1).toFixed(2)}%`;
-  } else if (indicatorTag === 'life-expectancy') {
-    value = `${(num2 - num1).toFixed(2)} years`
-  } else if (indicatorTag === 'poverty') {
-    value = `${(num2 - num1).toFixed(2)}`;
+    value = num2 - num1;
+  } else if (indicatorTag === 'life-expectancy' || indicatorTag === 'poverty') {
+    value = num2 - num1;
   }
 
+  console.log('value', value);
   return value;
 }
 
-app.displayParameterValues = (modalID, countryID, booleanForComparison) => {
-    // Takes in ID of modal where parameters are being appended, boolean to determine whether or not to run comparison
-  // Map over indicator
-// Check if indicator is checked or not
-// If not, add class 'no-display' and exit array map
-// If yes, find value, prepare value for display on DOM, and append to DOM using "modalID" variable
+// Function to convert numerical comparison value to string with '+' or '-' in front, rounded to 2 decimal places
+app.positiveOrNegative = value => {
+  let stringValue;
+  if (value > 0) {
+    stringValue = `+${value.toFixed(2)}`
+  } else if (value < 0) {
+    stringValue = `${value.toFixed(2)}`
+  } else if (value == 0) {
+    stringValue = 'equal';
+  } else {
+    stringValue = value;
+  }
+  return stringValue;
+}
+// Function to convert comparison value to string for display on DOM
+app.prepComparisonForDOM = (value, indicatorTag) => {
+  let stringValue = app.positiveOrNegative(value);
 
+  if (stringValue === 'N/A' || stringValue === '' || stringValue === 'equal') {
+    stringValue = stringValue;
+  } else if (indicatorTag === 'population' || indicatorTag === 'population_fem' || indicatorTag === 'population_male') {
+    stringValue = `${stringValue}m`
+  } else if (indicatorTag === 'gdp' || indicatorTag === 'gdp-growth' || indicatorTag === 'education_sec' || indicatorTag === 'education_prim' || indicatorTag === 'employment_fem' || indicatorTag === 'employment_male') {
+    stringValue = `${stringValue}%`
+  } else if (indicatorTag === 'life-expectancy') {
+    stringValue = `${stringValue} years`
+  }
+
+  return stringValue;
+}
+
+app.displayParameterValues = (modalID, countryID, booleanForComparison) => {
   // Loop through all indicator objects
   app.indicatorObjects.forEach(function (item) {
     // Grab indicator ID from array
@@ -171,36 +204,20 @@ app.displayParameterValues = (modalID, countryID, booleanForComparison) => {
     const indicatorValueForDOM = app.prepareForDOM(indicatorTag, countryIndicatorVal);
 
   if (booleanForComparison === true && app.userCountryObject !== null) {
-  // Check if user country object exists
-    // If yes, and value for param is not null, calculate difference between two values
-    // If yes, but value for param is null, add "N/A"
-    // If no, add "no-display" to parameter
-
     // Initialize user country value
     let userCountryIndicatorVal = app.countryData[app.userCountryID][indicatorID];
 
-    // const comparisonValueForDOM = 'N/A';
-    let comparisonValueForDOM = app.calculateComparisonDiff(userCountryIndicatorVal, countryIndicatorVal, indicatorTag);
+    // Calculate difference between two countries for indicator and store in variable
+    const comparisonValue = app.calculateComparisonDiff(userCountryIndicatorVal, countryIndicatorVal, indicatorTag);
+
+    // Convert comparison value to string for appending to DOM
+    const comparisonValueForDOM = app.prepComparisonForDOM(comparisonValue, indicatorTag);
     // console.log('indicator tag', indicatorTag, 'comp val', comparisonValueForDOM, 'type', typeof (comparisonValueForDOM), 'num type', typeof (parseInt(comparisonValueForDOM)));
 
     // Find indicator location in DOM and fill with data
     const indicatorHTML = `<span class="parameter-num ${indicatorTag}">${indicatorValueForDOM}</span> <span class="parameter-perc ${indicatorTag}">${comparisonValueForDOM}</span>`;
 
-    // Change color of comparison value based on whether it is above or below 0
-    if (parseInt(comparisonValueForDOM) > 0) {
-      console.log(indicatorTag, 'above 0', parseInt(comparisonValueForDOM));
-      comparisonValueForDOM = `+${comparisonValueForDOM}`;
-      $(`.parameter-perc.${indicatorTag}`).css("color", "#8DB762");
-    } else if (parseInt(comparisonValueForDOM) < 0) {
-      console.log(indicatorTag, 'below 0', parseInt(comparisonValueForDOM));
-      $(`.parameter-perc.${indicatorTag}`).css("color", "#FF3460");
-    } else {
-      console.log(indicatorTag, 'other', parseInt(comparisonValueForDOM));
-      $(`.parameter-perc.${indicatorTag}`).css("color", "white");
-    }
-
     $(`.parameter-value.${indicatorTag}`).append(indicatorHTML);
-
 
   } else if (booleanForComparison === true && app.userCountryObject === null){
     // const comparisonValueForDOM = 'N/A';
@@ -218,19 +235,5 @@ app.displayParameterValues = (modalID, countryID, booleanForComparison) => {
     $(`.parameter-value--secondary.${indicatorTag}`).append(indicatorHTML);
   }
   })
-
-// If comparison boolean is true:
-  // Check if user country object exists
-    // If yes, and value for param is not null, calculate difference between two values
-    // If yes, but value for param is null, add "N/A"
-    // If no, add "no-display" to parameter
 }
-
-
-
-// Map over indicator 
-// Check if indicator is checked or not
-// If not, add class 'no-display' and exit array map
-// If yes, find value, prepare value for display on DOM, and append to DOM
-
 

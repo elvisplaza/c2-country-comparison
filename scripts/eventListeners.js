@@ -71,13 +71,6 @@ $('.country-form--map-page').on('submit', function (e) {
   app.submitCountryInput('#country-input--map-page', self);
 });
 
-// On mouseover of any country
-$('.country').on('mouseover', function(){
-  // Highlight hovered country
-  $(".country").removeClass("country--selected");
-  $(this).addClass('country--selected');
-})
-
 // On click of settings button, show/hide parameters dropdown and change active color of button 
 $('.settings-button').on('click touchend', function(){
   $('.country-button').removeClass('button--highlight');
