@@ -9,11 +9,11 @@
 * Global country search with autofill
 * Access to World Bank country data for 10+ indicator values
 * Interactive SVG map
-* Side-by-side indicator comparison calculations on hover 
+* Side-by-side indicator comparison calculations on hover
 * Secondary search bar to easily update selected country from map page
-* Top 10 country lists per indicator
-* Option to save countries of interest to personal database (via Firebase)
-* Bonus codes: try out _038_ for gender equality mode
+<!-- * Top 10 country lists per indicator -->
+<!-- * Option to save countries of interest to personal database (via Firebase) -->
+<!-- * Bonus codes: try out _038_ for gender equality mode -->
 
 ## Technologies and Frameworks Used
 This project was built in jQuery, JavaScript, HTML5 and CSS3/Sass. Application data is handled using Firebase and the [live site](https://anamaljkovic.com/c-squared/) was deployed via Github Pages.
