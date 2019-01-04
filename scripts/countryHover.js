@@ -1,5 +1,5 @@
 // On mouseover
-$("path").on("mouseover touchend", function () {
+$("path").on("mouseover click", function () {
   // Set comparison country ID to ID of hovered path
   app.comparisonCountryID = $(this).attr("id");
   // Store hovered country name and capital in variables

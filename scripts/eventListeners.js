@@ -38,7 +38,7 @@ $('.toggle').on('click', function(){
 })
 
 // On click of any list item in dropdown menu on main page, change user country
-$('.country-list--main-page').on('click touchend', 'li', function () {
+$('.country-list--main-page').on('click', 'li', function () {
   // Store "this" of clicked li in variable
   const clickedCountry = this;
   // Run function to change user country to clicked value and display in input field
@@ -48,7 +48,7 @@ $('.country-list--main-page').on('click touchend', 'li', function () {
 })
 
 // On click of any list item in dropdown menu on map page, change user country
-$('.country-list--map-page').on('click touchend', 'li', function () {
+$('.country-list--map-page').on('click', 'li', function () {
   // Store "this" of clicked li in variable
   const clickedCountry = this;
   // Run function to change user country to clicked value and display in input field
@@ -77,7 +77,7 @@ $('.country-form--map-page').on('submit', function (e) {
 });
 
 // On click of settings button, show/hide parameters dropdown and change active color of button 
-$('.settings-button').on('click touchend', function(){
+$('.settings-button').on('click', function(){
   console.log('settings clicked');
   $('.country-button').removeClass('button--highlight');
   $(".main-menu__chosen-country").addClass("no-display");
@@ -86,7 +86,7 @@ $('.settings-button').on('click touchend', function(){
 });
 
 // On click of country button, show/hide country details dropdown and change active color of button (if there is a user country)
-$('.country-button').on('click touchend', function () {
+$('.country-button').on('click', function () {
   if (app.userCountryID !== undefined) {
     $('.settings-button').removeClass('button--highlight');
     $('.main-menu__parameters').addClass('no-display');
