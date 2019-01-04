@@ -24,12 +24,11 @@ $("path").on("mouseover touchend", function () {
     $(`.parameter-perc`).remove();
 
     // Run function to display parameter values on DOM in map country data section
-    app.displayParameterValues('.map__country-data', app.comparisonCountryID, true);
+    app.displayParameterValues(app.comparisonCountryID, true);
 
     // Show country data (hover) div and all parameters
     $(".map__country-data").removeClass("no-display");
     $(".country-code").removeClass("no-display");
-    $(".parameter-value").removeClass("no-display");
   }
 });
 

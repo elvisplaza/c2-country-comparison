@@ -82,11 +82,13 @@ app.submitCountryInput = function (searchInputID, thisRef) {
         $('.chosen-capital-city').text(`Capital: ${countryCapital}`);
 
         // Run function to display parameter values on DOM in chosen country data section
-        app.displayParameterValues('.main-menu__chosen-country', app.userCountryID, false);
+        app.displayParameterValues(app.userCountryID, false);
+
+        // Hide modal
+        $(thisRef).closest('.modal').toggleClass('no-display');
     } else {
         // Alert the user that their country is invalid
         alert('Invalid country. Please try again.');
     }
-    // Hide modal
-    $(thisRef).closest('.modal').toggleClass('no-display');
+    
 }

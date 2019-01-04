@@ -4,13 +4,32 @@ app.toggleVis = function(elemToHideClass, elemToShowClass){
   $(elemToShowClass).removeClass('no-display');
 }
 
-// On click of parameter label, change highlight status
+// Take in ID of selected parameter
+app.toggleParameterCheck = (ID) => {
+  // Loop through indicator objects
+  app.indicatorObjects.forEach((indicator) => {
+    // Change checked value of relevant indicator to its opposite
+    if (indicator.tag === ID && indicator.checked === true) {
+      indicator.checked = false;
+      $(`.parameter-value.${indicator.tag}`).addClass('no-display');
+      $(`.parameter-value--secondary.${indicator.tag}`).addClass('no-display');
+    } else if (indicator.tag === ID && indicator.checked === false) {
+      indicator.checked = true;
+      $(`.parameter-value.${indicator.tag}`).removeClass('no-display');
+      $(`.parameter-value--secondary.${indicator.tag}`).removeClass('no-display');
+    }
+  })
+}
+
+// On click of parameter label, change checked status
 $(".parameters-fieldset").on("click", "label", function() {
-  $(this).toggleClass("label--selected");
   const tagId = $(this).attr("for");
-  console.log(tagId);
-  $(`.parameter-value.${tagId}`).toggleClass('no-display');
+  app.toggleParameterCheck(tagId);
+  app.displayIndicators();
+  app.displayParameterValues(app.comparisonCountryID, true);
+  app.displayParameterValues(app.userCountryID, false);
 });
+
 
 // On user entering text into main page country input, run country search function and show/hide relevant modal 
 $('#country-input--main-page').on('keyup copy paste cut change', function(){
@@ -73,6 +92,7 @@ $('.country-form--map-page').on('submit', function (e) {
 
 // On click of settings button, show/hide parameters dropdown and change active color of button 
 $('.settings-button').on('click touchend', function(){
+  console.log('settings clicked');
   $('.country-button').removeClass('button--highlight');
   $(".main-menu__chosen-country").addClass("no-display");
   $('.main-menu__parameters').toggleClass('no-display');
