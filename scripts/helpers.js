@@ -46,7 +46,7 @@ app.indicatorObjects = [
     id: "SP.DYN.LE00.IN",
     name: "Life expectancy at birth, total",
     tag: "life-expectancy",
-    value: "Life expectancy",
+    value: "Life exp.",
     checked: true,
   },
 
@@ -70,7 +70,7 @@ app.indicatorObjects = [
     id: "UIS.E.4",
     name: "Enrolment in Post-Secondary Education (both sexes)",
     tag: "education_ps",
-    value: "Education (post-sec)",
+    value: "Educ. (post-sec)",
     checked: true,
   },
 
@@ -78,14 +78,14 @@ app.indicatorObjects = [
     id: "UIS.E.3.GPV",
     name: "Enrolment in Secondary Education",
     tag: "education_sec",
-    value: "Education (sec)",
+    value: "Educ. (sec)",
     checked: true,
   },
   {
     id: "SE.TOT.ENRR",
     name: "Gross enrolment ratio, primary school to tertiary (both sexes %)",
     tag: "education_prim",
-    value: "Education (prim)",
+    value: "Educ. (prim)",
     checked: true,
   },
 
@@ -128,65 +128,104 @@ app.prepareForDOM = (tag, num) => {
   } else if (tag === 'life-expectancy') {
     value = `${(num).toFixed(1)} years`;
   } else {
-    value = `${(num).toFixed(1)}`;
+    value = `${(num).toFixed(2)}`;
   }
   return value;
 }
 
 // Function to calculate difference between two values
-app.calculateComparisonDiff = (num1, num2, indicatorTag) => {
-  console.log(indicatorTag, num1, num2);
+app.calculateComparisonDiff = (userVal, hoveredVal, indicatorTag) => {
+  console.log(indicatorTag, userVal, hoveredVal);
   // Initialize variable for value
   let value;
   // If both numerical values are null, or the second (hovered country) value is null, set the value to an empty string
-  if (num1 == null && num2 == null || num2 == null) {
+  if (userVal == null && hoveredVal == null || hoveredVal == null) {
     value = '';
   // If only the user value is null, set the comparison value to 'N/A'
-  } else if (num1 == null) {
+  } else if (userVal == null) {
     value = 'N/A';
   } else if (indicatorTag === 'population' || indicatorTag === 'population_fem' || indicatorTag === 'population_male') {
-    value = (num2 - num1)/1000000;
-  } else if (indicatorTag === 'gdp' || indicatorTag === 'education_ps' || indicatorTag === 'education_sec') {
-    value = (num2 / num1) * 100;
-  } else if (indicatorTag === 'gdp-growth' || indicatorTag === 'education_sec' || indicatorTag === 'education_prim' || indicatorTag === 'employment_fem' || indicatorTag === 'employment_male') {
-    value = num2 - num1;
-  } else if (indicatorTag === 'life-expectancy' || indicatorTag === 'poverty') {
-    value = num2 - num1;
-  }
+    value = (hoveredVal - userVal)/1000000;
+  } else if (indicatorTag === 'education_ps' || indicatorTag === 'education_sec') {
+    value = (hoveredVal / userVal) * 100;
+  } else if (indicatorTag === 'gdp' || indicatorTag === 'gdp-growth' || indicatorTag === 'education_prim' || indicatorTag === 'employment_fem' || indicatorTag === 'employment_male' || indicatorTag === 'life-expectancy' || indicatorTag === 'poverty') {
+    value = hoveredVal - userVal;
+  } 
 
   console.log('value', value);
   return value;
 }
 
 // Function to convert numerical comparison value to string with '+' or '-' in front, rounded to 2 decimal places
-app.positiveOrNegative = value => {
+app.positiveOrNegative = (value, indicatorTag) => {
   let stringValue;
-  if (value > 0) {
-    stringValue = `+${value.toFixed(2)}`
+  if (value > 0 && indicatorTag === 'life-expectancy') {
+    stringValue = `+${value.toFixed(1)}`;
+  } else if (value > 1000000000000 && indicatorTag === 'gdp') {
+    stringValue = `+$${(((value / 1000000000000) * 100) / 100).toFixed(2)}`;
+  } else if (value > 1000000000 && indicatorTag === 'gdp') {
+    stringValue = `+$${(((value / 1000000000) * 100) / 100).toFixed(2)}`;
+  } else if (value > 1000000 && indicatorTag === 'gdp') {
+    stringValue = `+$${(((value / 1000000) * 100) / 100).toFixed(2)}`;
+  } else if (value < -1000000000000 && indicatorTag === 'gdp') {
+    stringValue = `-$${(((Math.abs(value) / 1000000000000) * 100) / 100).toFixed(2)}`;
+  } else if (value < -1000000000 && indicatorTag === 'gdp') {
+    stringValue = `-$${(((Math.abs(value) / 1000000000) * 100) / 100).toFixed(2)}`;
+  } else if (value < -1000000 && indicatorTag === 'gdp') {
+    stringValue = `-$${(((Math.abs(value) / 1000000) * 100) / 100).toFixed(2)}`;
+  } else if (value > 0) {
+    stringValue = `+${value.toFixed(2)}`;
+  } else if (value < 0 && indicatorTag === 'life-expectancy') {
+    stringValue = `${value.toFixed(1)}`;
+  } else if (value < 0 && indicatorTag === 'gdp') {
+    stringValue = `-$${value.toFixed(2)}`;
   } else if (value < 0) {
-    stringValue = `${value.toFixed(2)}`
-  } else if (value == 0) {
+    stringValue = `${value.toFixed(2)}`;
+  } else if (value === 0) {
     stringValue = 'equal';
   } else {
     stringValue = value;
   }
+  
   return stringValue;
 }
 // Function to convert comparison value to string for display on DOM
 app.prepComparisonForDOM = (value, indicatorTag) => {
-  let stringValue = app.positiveOrNegative(value);
+  let stringValue = app.positiveOrNegative(value, indicatorTag);
 
   if (stringValue === 'N/A' || stringValue === '' || stringValue === 'equal') {
     stringValue = stringValue;
+  } else if (indicatorTag === 'gdp' && Math.abs(value) > 1000000000000) {
+    stringValue = `${stringValue}t`;
+  } else if (indicatorTag === 'gdp' && Math.abs(value) > 1000000000) {
+    stringValue = `${stringValue}b`;
+  } else if (indicatorTag === 'gdp') {
+    stringValue = `${stringValue}m`;
   } else if (indicatorTag === 'population' || indicatorTag === 'population_fem' || indicatorTag === 'population_male') {
     stringValue = `${stringValue}m`
-  } else if (indicatorTag === 'gdp' || indicatorTag === 'gdp-growth' || indicatorTag === 'education_sec' || indicatorTag === 'education_prim' || indicatorTag === 'employment_fem' || indicatorTag === 'employment_male') {
+  } else if (indicatorTag === 'gdp-growth' || indicatorTag === 'education_sec' || indicatorTag === 'education_prim' || indicatorTag === 'employment_fem' || indicatorTag === 'employment_male') {
     stringValue = `${stringValue}%`
   } else if (indicatorTag === 'life-expectancy') {
     stringValue = `${stringValue} years`
   }
 
   return stringValue;
+}
+
+app.comparisonColor = (value, indicatorTag) => {
+  let color;
+  if (indicatorTag === 'gdp' && value >= 100) {
+    color = '#8AD137';
+  } else if (indicatorTag === 'gdp' && value < 100) {
+    color = '#EF2929';
+  } else if (value >= 0) {
+    color = '#8AD137';
+  } else if (value < 0) {
+    color = '#EF2929';
+  } else {
+    color = 'rgba(255, 255, 255, 0.35)';
+  }
+  return color;
 }
 
 app.displayParameterValues = (modalID, countryID, booleanForComparison) => {
@@ -218,6 +257,9 @@ app.displayParameterValues = (modalID, countryID, booleanForComparison) => {
     const indicatorHTML = `<span class="parameter-num ${indicatorTag}">${indicatorValueForDOM}</span> <span class="parameter-perc ${indicatorTag}">${comparisonValueForDOM}</span>`;
 
     $(`.parameter-value.${indicatorTag}`).append(indicatorHTML);
+
+    const comparisonColor = app.comparisonColor(comparisonValue, indicatorTag);
+    $(`.parameter-perc.${indicatorTag}`).css('color', comparisonColor);
 
   } else if (booleanForComparison === true && app.userCountryObject === null){
     // const comparisonValueForDOM = 'N/A';
