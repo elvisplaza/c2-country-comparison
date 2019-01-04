@@ -106,6 +106,28 @@ app.indicatorObjects = [
   },
 ];
 
+// Function to toggle visibility of indicators based on whether or not they are checked
+app.toggleParameterCheck = (ID) => {
+  // Loop through indicator objects
+  app.indicatorObjects.forEach((indicator) => {
+    // Find matching indicator and if it is checked
+    if (indicator.tag === ID && indicator.checked === true) {
+      // Set checked status to false
+      indicator.checked = false;
+      // Toggle display class of indicator on DOM to hide it
+      $(`.parameter-value.${indicator.tag}`).addClass('no-display');
+      $(`.parameter-value--secondary.${indicator.tag}`).addClass('no-display');
+      // If it is not checked
+    } else if (indicator.tag === ID && indicator.checked === false) {
+      // Set checked status to true
+      indicator.checked = true;
+      // Toggle display class of indicator on DOM to show it
+      $(`.parameter-value.${indicator.tag}`).removeClass('no-display');
+      $(`.parameter-value--secondary.${indicator.tag}`).removeClass('no-display');
+    }
+  })
+}
+
 // Function to display names of indicators on DOM
 app.displayIndicators = function () {
   $(".parameters-fieldset").empty();

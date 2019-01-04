@@ -4,32 +4,18 @@ app.toggleVis = function(elemToHideClass, elemToShowClass){
   $(elemToShowClass).removeClass('no-display');
 }
 
-// Take in ID of selected parameter
-app.toggleParameterCheck = (ID) => {
-  // Loop through indicator objects
-  app.indicatorObjects.forEach((indicator) => {
-    // Change checked value of relevant indicator to its opposite
-    if (indicator.tag === ID && indicator.checked === true) {
-      indicator.checked = false;
-      $(`.parameter-value.${indicator.tag}`).addClass('no-display');
-      $(`.parameter-value--secondary.${indicator.tag}`).addClass('no-display');
-    } else if (indicator.tag === ID && indicator.checked === false) {
-      indicator.checked = true;
-      $(`.parameter-value.${indicator.tag}`).removeClass('no-display');
-      $(`.parameter-value--secondary.${indicator.tag}`).removeClass('no-display');
-    }
-  })
-}
-
 // On click of parameter label, change checked status
 $(".parameters-fieldset").on("click", "label", function() {
+  // Store tag ID in variable
   const tagId = $(this).attr("for");
+  // Run function to toggle parameter visibility
   app.toggleParameterCheck(tagId);
+  // Rerun function to display indicators so newly checked/unchecked value is shown/hidden
   app.displayIndicators();
+  // Rerun function to display calculated parameter values on both country hover div and user country modal
   app.displayParameterValues(app.comparisonCountryID, true);
   app.displayParameterValues(app.userCountryID, false);
 });
-
 
 // On user entering text into main page country input, run country search function and show/hide relevant modal 
 $('#country-input--main-page').on('keyup copy paste cut change', function(){
@@ -115,7 +101,7 @@ app.init = function () {
   app.topCountries();
   app.countryDataPromise();
   app.countrySearch();
-  app.cheatCodes();
+  // app.cheatCodes();
 }
 
 // Document ready
