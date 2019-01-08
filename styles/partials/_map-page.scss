@@ -1,6 +1,42 @@
 .main-menu {
+
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  // justify-content: space-between;
+
+  &__search {
+    // flex-basis: 50%;
+
+    .input {
+      // sizing
+      min-width: 375px;
+      width: 50%;
+    }
+  }
+
+  &__search, 
+  &__settings,
+  &__lists,
+  &__country {
+    // position & spacing
+    padding-right: 1.5rem;
+  }
+
   &__country {
     position: relative;
+  }
+
+  &__parameters {
+    // background
+    background: rgba(76, 76, 76, 0.5);
+
+    // position & spacing
+    position: absolute;
+    top: 50px;
+
+    // sizing
+    width: 300px;
   }
 
   &__chosen-country {
@@ -17,7 +53,7 @@
     height: auto;
     max-height: 300px;
     width: auto;
-    max-width: 300px;
+    max-width: 450px;
     overflow-y: scroll;
 
     .chosen-country-name,
@@ -45,18 +81,18 @@
       opacity: 0.7;
     }
 
-    .parameter-value-sc {
+    .parameter-value--secondary {
       text-transform: uppercase;
       font-size: 1.2rem;
       letter-spacing: 0.05rem;
     }
 
-    .parameter-name-sc {
+    .parameter-name--secondary {
       padding-right: 0.5rem;
       opacity: 0.5;
     }
 
-    .parameter-num-sc {
+    .parameter-num--secondary {
       padding-right: 0.5rem;
       opacity:1;
     }
@@ -67,12 +103,12 @@
 .map {
   &__country-data {
     // background
-    background: rgba(76, 76, 76, 0.5);
+    background: rgba(76, 76, 76, 0.7);
 
     // position & spacing
     padding: 0.5rem 3.5rem;
     margin: 2rem 4rem;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
 
@@ -126,12 +162,20 @@
       opacity:1;
     }
 
-    .parameter-perc {
-      color: $highlightColor;
-    }
+    // .parameter-perc {
+    //   color: $highlightColor;
+    // }
   }
 
   &__content {
+      
+      min-height: 450px;
+      max-height: 850px;
+
+      svg {
+        height: 100vh;
+        
+      }
     .country {
       // position & spacing
       transform-origin: center;
@@ -159,15 +203,9 @@
 }
 
 .country--selected {
-  // fill
-  stroke: $highlightColor;
-  stroke-width: 2;
+
   fill: #a3e2a3;
 
   // transition & animation
   transition: all 0.5s ease 0.05s;
-}
-
-#country-list__map-page {
-  z-index: -500;
 }
